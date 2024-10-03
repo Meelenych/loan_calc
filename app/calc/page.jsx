@@ -12,9 +12,10 @@ const CalcPage = () => {
 
 	const [formData, setFormData] = useState(initialFormData);
 
+	const equity = Number(formData.trade) - Number(formData.payoff);
 	const total =
 		Number(formData.price) +
-		Number(formData.otherAccessory) +
+		Number(formData.otherAccessory) -
 		(Number(formData.trade) - Number(formData.payoff));
 
 	const totalWithDown = total - Number(formData.downPayment);
@@ -106,7 +107,7 @@ const CalcPage = () => {
 					<ul>
 						<li>
 							<p>
-								Equity: {toCurrency(Number(formData.trade) - Number(formData.payoff))}
+								{equity >= 0 ? 'Positive' : 'Negative'} equity: {toCurrency(equity)}
 							</p>
 						</li>
 						<li>
