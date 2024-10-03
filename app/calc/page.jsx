@@ -40,7 +40,7 @@ const CalcPage = () => {
 	// };
 
 	return (
-		<div className='flex justify-evenly container mx-auto gap-5 p-5 flex-col sm:flex-row'>
+		<div className='flex justify-evenly items-center container mx-auto gap-5 p-5 flex-col sm:flex-row h-lvh'>
 			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
 				<h2>Enter the values here</h2>
 				<form
@@ -129,79 +129,122 @@ const CalcPage = () => {
 						</li>
 					</ul>
 				</div>
-				<hr />
-				{/* Payments without money down */}
-				<div>
-					<h3>Payments without money down:</h3>
-					<h4>Short term</h4>
-					<ul>
-						<li>Monthly payment 24: {toCurrency(((total * 1.1) / 24) * 1.05)}</li>
-						<li>Monthly payment 36: {toCurrency(((total * 1.1) / 36) * 1.05)}</li>
-					</ul>
-					<h4>Long term</h4>
-					<ul>
-						<li>Monthly payment 60: {toCurrency(((total * 1.1) / 60) * 1.05)}</li>
-						<li>Monthly payment 72: {toCurrency(((total * 1.1) / 72) * 1.05)}</li>
-						<li>Monthly payment 84: {toCurrency(((total * 1.1) / 84) * 1.05)}</li>
-					</ul>
-				</div>
-				<hr />
-				{/* Payments with custom money down */}
-				<div>
-					<h3>Payments with custom money down:</h3>
-					<h4>Short term</h4>
-					<ul>
-						<li>Monthly payment 24: {toCurrency((totalWithDown / 24) * 1.05)}</li>
-						<li>Monthly payment 36: {toCurrency((totalWithDown / 36) * 1.05)}</li>
-					</ul>
-					<h4>Long term</h4>
-					<ul>
-						<li>Monthly payment 60: {toCurrency((totalWithDown / 60) * 1.05)}</li>
-						<li>Monthly payment 72: {toCurrency((totalWithDown / 72) * 1.05)}</li>
-						<li>Monthly payment 84: {toCurrency((totalWithDown / 84) * 1.05)}</li>
-					</ul>
-				</div>
-				<hr />
-				{/* Payments with 10% money down */}
-				<div>
-					<h3>Payments with 10% money down:</h3>
-					<h4>Short term</h4>
-					<ul>
-						<li>Monthly payment 24: {toCurrency((totalWithTenDown / 24) * 1.05)}</li>
-						<li>Monthly payment 36: {toCurrency((totalWithTenDown / 36) * 1.05)}</li>
-					</ul>
-					<h4>Long term</h4>
-					<ul>
-						<li>Monthly payment 60: {toCurrency((totalWithTenDown / 60) * 1.05)} </li>
-						<li>Monthly payment 72: {toCurrency((totalWithTenDown / 72) * 1.05)}</li>
-						<li>Monthly payment 84: {toCurrency((totalWithTenDown / 84) * 1.05)}</li>
-					</ul>
-				</div>
-				<hr />
-				{/* Payments with 20% money down */}
-				<div>
-					<h3>Payments with 20% money down:</h3>
-					<h4>Short term</h4>
-					<ul>
-						<li>
-							Monthly payment 24: {toCurrency((totalWithTwentyDown / 24) * 1.05)}
-						</li>
-						<li>
-							Monthly payment 36: {toCurrency((totalWithTwentyDown / 36) * 1.05)}
-						</li>
-					</ul>
-					<h4>Long term</h4>
-					<ul>
-						<li>
-							Monthly payment 60: {toCurrency((totalWithTwentyDown / 60) * 1.05)}{' '}
-						</li>
-						<li>
-							Monthly payment 72: {toCurrency((totalWithTwentyDown / 72) * 1.05)}
-						</li>
-						<li>
-							Monthly payment 84: {toCurrency((totalWithTwentyDown / 84) * 1.05)}
-						</li>
-					</ul>
+
+				<div className='join join-vertical w-full'>
+					{/* Payments without money down */}
+					<div className='collapse collapse-arrow join-item border-base-300 border'>
+						<input
+							type='radio'
+							name='my-accordion-4'
+							defaultChecked
+						/>
+
+						<div className='collapse-title text-xl font-medium'>
+							<h3>Payments without money down:</h3>
+						</div>
+						<div className='collapse-content'>
+							<h4>Short term</h4>
+							<ul>
+								<li>Monthly payment 24: {toCurrency(((total * 1.1) / 24) * 1.05)}</li>
+								<li>Monthly payment 36: {toCurrency(((total * 1.1) / 36) * 1.05)}</li>
+							</ul>
+							<h4>Long term</h4>
+							<ul>
+								<li>Monthly payment 60: {toCurrency(((total * 1.1) / 60) * 1.05)}</li>
+								<li>Monthly payment 72: {toCurrency(((total * 1.1) / 72) * 1.05)}</li>
+								<li>Monthly payment 84: {toCurrency(((total * 1.1) / 84) * 1.05)}</li>
+							</ul>
+						</div>
+					</div>
+					{/* Payments with custom money down */}
+					<div className='collapse collapse-arrow join-item border-base-300 border'>
+						<input
+							type='radio'
+							name='my-accordion-4'
+						/>
+						<div className='collapse-title text-xl font-medium'>
+							<h3>Payments with custom money down:</h3>
+						</div>
+						<div className='collapse-content'>
+							<h4>Short term</h4>
+							<ul>
+								<li>Monthly payment 24: {toCurrency((totalWithDown / 24) * 1.05)}</li>
+								<li>Monthly payment 36: {toCurrency((totalWithDown / 36) * 1.05)}</li>
+							</ul>
+							<h4>Long term</h4>
+							<ul>
+								<li>Monthly payment 60: {toCurrency((totalWithDown / 60) * 1.05)}</li>
+								<li>Monthly payment 72: {toCurrency((totalWithDown / 72) * 1.05)}</li>
+								<li>Monthly payment 84: {toCurrency((totalWithDown / 84) * 1.05)}</li>
+							</ul>
+						</div>
+					</div>
+					{/* Payments with 10% money down */}
+					<div className='collapse collapse-arrow join-item border-base-300 border'>
+						<input
+							type='radio'
+							name='my-accordion-4'
+						/>
+						<div className='collapse-title text-xl font-medium'>
+							<h3>Payments with 10% money down:</h3>
+						</div>
+						<div className='collapse-content'>
+							<h4>Short term</h4>
+							<ul>
+								<li>
+									Monthly payment 24: {toCurrency((totalWithTenDown / 24) * 1.05)}
+								</li>
+								<li>
+									Monthly payment 36: {toCurrency((totalWithTenDown / 36) * 1.05)}
+								</li>
+							</ul>
+							<h4>Long term</h4>
+							<ul>
+								<li>
+									Monthly payment 60: {toCurrency((totalWithTenDown / 60) * 1.05)}{' '}
+								</li>
+								<li>
+									Monthly payment 72: {toCurrency((totalWithTenDown / 72) * 1.05)}
+								</li>
+								<li>
+									Monthly payment 84: {toCurrency((totalWithTenDown / 84) * 1.05)}
+								</li>
+							</ul>
+						</div>
+					</div>
+					{/* Payments with 20% money down */}
+					<div className='collapse collapse-arrow join-item border-base-300 border'>
+						<input
+							type='radio'
+							name='my-accordion-4'
+						/>
+						<div className='collapse-title text-xl font-medium'>
+							<h3>Payments with 20% money down:</h3>
+						</div>
+						<div className='collapse-content'>
+							<h4>Short term</h4>
+							<ul>
+								<li>
+									Monthly payment 24: {toCurrency((totalWithTwentyDown / 24) * 1.05)}
+								</li>
+								<li>
+									Monthly payment 36: {toCurrency((totalWithTwentyDown / 36) * 1.05)}
+								</li>
+							</ul>
+							<h4>Long term</h4>
+							<ul>
+								<li>
+									Monthly payment 60: {toCurrency((totalWithTwentyDown / 60) * 1.05)}{' '}
+								</li>
+								<li>
+									Monthly payment 72: {toCurrency((totalWithTwentyDown / 72) * 1.05)}
+								</li>
+								<li>
+									Monthly payment 84: {toCurrency((totalWithTwentyDown / 84) * 1.05)}
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
