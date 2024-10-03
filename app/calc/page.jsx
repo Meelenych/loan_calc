@@ -47,7 +47,7 @@ const CalcPage = () => {
 	};
 
 	return (
-		<div className='flex justify-evenly items-center container mx-auto gap-5 p-5 flex-col sm:flex-row h-lvh'>
+		<div className='flex justify-evenly items-center container mx-auto gap-5 p-5 flex-col sm:flex-row'>
 			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
 				<h2>Enter the values here</h2>
 				<form className='grid grid-cols-1 gap-4 w-full'>
