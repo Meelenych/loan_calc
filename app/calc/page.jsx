@@ -135,7 +135,7 @@ const CalcPage = () => {
 						<li>
 							<p>
 								Total price with accessories including trade cost and equity:{' '}
-								{toCurrency(Number(formData.price) + Number(formData.otherAccessory))}
+								{toCurrency(total)}
 							</p>
 						</li>
 						<li>
