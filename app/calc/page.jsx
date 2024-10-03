@@ -11,10 +11,22 @@ const CalcPage = () => {
 	};
 
 	const [formData, setFormData] = useState(initialFormData);
+	const [loJack, setLoJack] = useState(0);
+	const [roadHazard, setRoadHazard] = useState(0);
+
+	const handleLoJackChange = e => {
+		setLoJack(e.target.checked ? 499 : 0);
+	};
+
+	const handleRoadHazardChange = e => {
+		setRoadHazard(e.target.checked ? 499 : 0);
+	};
 
 	const equity = Number(formData.trade) - Number(formData.payoff);
 	const total =
 		Number(formData.price) +
+		Number(loJack) +
+		Number(roadHazard) +
 		Number(formData.otherAccessory) -
 		(Number(formData.trade) - Number(formData.payoff));
 
@@ -34,19 +46,11 @@ const CalcPage = () => {
 		setFormData(prevData => ({ ...prevData, [name]: value }));
 	};
 
-	// const handleSubmit = e => {
-	// 	e.preventDefault();
-	// 	// Your form submission logic here
-	// 	console.log(formData);
-	// };
-
 	return (
 		<div className='flex justify-evenly items-center container mx-auto gap-5 p-5 flex-col sm:flex-row h-lvh'>
 			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
 				<h2>Enter the values here</h2>
-				<form
-					// onSubmit={handleSubmit}
-					className='grid grid-cols-1 gap-4 w-full'>
+				<form className='grid grid-cols-1 gap-4 w-full'>
 					<input
 						className='w-full rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						type='number'
@@ -74,6 +78,29 @@ const CalcPage = () => {
 						value={formData.price}
 						onChange={handleInputChange}
 					/>
+					<div className='form-control'>
+						<label className='label cursor-pointer'>
+							<span className='label-text'>LoJack</span>
+							<input
+								type='checkbox'
+								className='checkbox'
+								defaultChecked={loJack === 499}
+								onChange={handleLoJackChange}
+							/>
+						</label>
+					</div>
+
+					<div className='form-control'>
+						<label className='label cursor-pointer'>
+							<span className='label-text'>Road Hazard</span>
+							<input
+								type='checkbox'
+								className='checkbox'
+								defaultChecked={roadHazard === 499}
+								onChange={handleRoadHazardChange}
+							/>
+						</label>
+					</div>
 					<input
 						className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						type='number'
@@ -92,18 +119,13 @@ const CalcPage = () => {
 						value={formData.downPayment}
 						onChange={handleInputChange}
 					/>
-					{/* <button
-						type='submit'
-						className='rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'>
-						Calculate
-					</button> */}
 				</form>
 			</div>
 
 			<div className='w-full md:w-1/2'>
 				{/* General information */}
 				<div>
-					<h2>General information</h2>
+					<h2 className='text-xl font-medium'>General information</h2>
 					<ul>
 						<li>
 							<p>
@@ -253,3 +275,12 @@ const CalcPage = () => {
 };
 
 export default CalcPage;
+
+// Credit-based Rates
+// CREDIT GRADE	FICO SCORE	UP TO 60 MONTHS	61-72 MONTHS
+// A+	730+	6.49%	6.75%
+// A	680-729	6.99%	7.25%
+// B	640-679	8.24%	8.50%
+// C	600-639	11.24%	11.50%
+// D	550-599	15.24%	15.50%
+// E	<549	18.00%	18.00%
