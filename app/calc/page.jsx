@@ -28,7 +28,7 @@ const CalcPage = () => {
 		Number(loJack) +
 		Number(roadHazard) +
 		Number(formData.otherAccessory) -
-		(Number(formData.trade) - Number(formData.payoff));
+		equity;
 
 	const totalWithDown = total - Number(formData.downPayment);
 	const totalWithTenDown = total - Number(total * 1.1 * 0.1);
@@ -48,18 +48,23 @@ const CalcPage = () => {
 
 	return (
 		<div className='flex justify-evenly items-center container mx-auto gap-5 p-5 flex-col sm:flex-row'>
+			{/* Form inputs */}
 			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
 				<h2>Enter the values here</h2>
 				<form className='grid grid-cols-1 gap-4 w-full'>
-					<input
-						className='w-full rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
-						type='number'
-						name='trade'
-						id='trade'
-						placeholder='Trade value'
-						value={formData.trade}
-						onChange={handleInputChange}
-					/>
+					<label htmlFor='trade'>
+						{' '}
+						Trade value
+						<input
+							className='w-full rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+							type='number'
+							name='trade'
+							id='trade'
+							placeholder='Trade value'
+							value={formData.trade}
+							onChange={handleInputChange}
+						/>
+					</label>
 					<input
 						className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						type='number'
@@ -120,8 +125,76 @@ const CalcPage = () => {
 						onChange={handleInputChange}
 					/>
 				</form>
+				{/* Interest rates */}
+				<div className='dropdown dropdown-hover dropdown-top'>
+					<div
+						tabIndex={0}
+						role='button'
+						className='btn rounded-full btn-warning m-1'>
+						Interest rates
+					</div>
+
+					<div
+						tabIndex={0}
+						className='dropdown-content menu bg-base-100 rounded-box z-[1] w-max p-2 shadow'>
+						<h5 className='text-lg'>Credit-based Rates</h5>
+						<table className='table'>
+							{/* head */}
+							<thead>
+								<tr>
+									<th>CREDIT GRADE</th>
+									<th>FICO SCORE</th>
+									<th>UP TO 60 MONTHS</th>
+									<th>61-72 MONTHS</th>
+								</tr>
+							</thead>
+							<tbody>
+								{/* row 1 */}
+								<tr>
+									<th>A+</th>
+									<td>730+</td>
+									<td>6.49%</td>
+									<td>6.75%</td>
+								</tr>
+								{/* row 2 */}
+								<tr>
+									<th>A</th>
+									<td>680-729</td>
+									<td>6.99%</td>
+									<td>7.25%</td>
+								</tr>
+								{/* row 3 */}
+								<tr>
+									<th>B</th>
+									<td>640-679</td>
+									<td>8.24%</td>
+									<td>8.50%</td>
+								</tr>
+								<tr>
+									<th>C</th>
+									<td>600-639</td>
+									<td>11.24%</td>
+									<td>11.50%</td>
+								</tr>
+								<tr>
+									<th>D</th>
+									<td>550-599</td>
+									<td>15.24%</td>
+									<td>15.50%</td>
+								</tr>
+								<tr>
+									<th>E</th>
+									<td>&lt;549</td>
+									<td>18.00%</td>
+									<td>18.00%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 
+			{/* Loan information */}
 			<div className='w-full md:w-1/2'>
 				{/* General information */}
 				<div>
@@ -152,7 +225,7 @@ const CalcPage = () => {
 						</li>
 					</ul>
 				</div>
-
+				{/* Payments accordeon */}
 				<div className='join join-vertical w-full'>
 					{/* Payments without money down */}
 					<div className='collapse collapse-arrow join-item border-base-300 border'>
@@ -275,12 +348,3 @@ const CalcPage = () => {
 };
 
 export default CalcPage;
-
-// Credit-based Rates
-// CREDIT GRADE	FICO SCORE	UP TO 60 MONTHS	61-72 MONTHS
-// A+	730+	6.49%	6.75%
-// A	680-729	6.99%	7.25%
-// B	640-679	8.24%	8.50%
-// C	600-639	11.24%	11.50%
-// D	550-599	15.24%	15.50%
-// E	<549	18.00%	18.00%
