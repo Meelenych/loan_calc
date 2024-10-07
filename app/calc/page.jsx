@@ -83,28 +83,31 @@ const CalcPage = () => {
 						value={formData.price}
 						onChange={handleInputChange}
 					/>
-					<div className='form-control'>
-						<label className='label cursor-pointer'>
-							<span className='label-text'>LoJack</span>
-							<input
-								type='checkbox'
-								className='checkbox'
-								defaultChecked={loJack === 499}
-								onChange={handleLoJackChange}
-							/>
-						</label>
+					<div className='rounded-full border border-solid border-white text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
+						<div className='form-control w-full'>
+							<label className='label cursor-pointer flex justify-between'>
+								<span className='label-text'>LoJack</span>
+								<input
+									type='checkbox'
+									className='checkbox'
+									defaultChecked={loJack === 499}
+									onChange={handleLoJackChange}
+								/>
+							</label>
+						</div>
 					</div>
-
-					<div className='form-control'>
-						<label className='label cursor-pointer'>
-							<span className='label-text'>Road Hazard</span>
-							<input
-								type='checkbox'
-								className='checkbox'
-								defaultChecked={roadHazard === 499}
-								onChange={handleRoadHazardChange}
-							/>
-						</label>
+					<div className='rounded-full border border-solid border-white text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
+						<div className='form-control w-full'>
+							<label className='label cursor-pointer'>
+								<span className='label-text'>Road Hazard</span>
+								<input
+									type='checkbox'
+									className='checkbox'
+									defaultChecked={roadHazard === 499}
+									onChange={handleRoadHazardChange}
+								/>
+							</label>
+						</div>
 					</div>
 					<input
 						className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
@@ -126,11 +129,11 @@ const CalcPage = () => {
 					/>
 				</form>
 				{/* Interest rates */}
-				<div className='dropdown dropdown-hover dropdown-top'>
+				<div className='dropdown dropdown-hover dropdown-top w-full mt-4'>
 					<div
 						tabIndex={0}
 						role='button'
-						className='btn rounded-full btn-warning m-1'>
+						className='btn rounded-full btn-warning w-full'>
 						Interest rates
 					</div>
 
