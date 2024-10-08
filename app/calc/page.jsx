@@ -1,5 +1,7 @@
 'use client';
 import { React, useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CalcPage = () => {
 	const initialFormData = {
@@ -10,6 +12,15 @@ const CalcPage = () => {
 		downPayment: '',
 		score: '',
 	};
+
+	const [errors, setErrors] = useState({
+		trade: '',
+		payoff: '',
+		price: '',
+		otherAccessory: '',
+		downPayment: '',
+		score: '',
+	});
 
 	const [formData, setFormData] = useState(initialFormData);
 	const [loJack, setLoJack] = useState(499);
@@ -40,18 +51,18 @@ const CalcPage = () => {
 	const getInterestRate = () => {
 		if (formData.score <= 549) {
 			return setInterestRate(1.18);
-		} else if ((formData.score <= 599) & (formData.score >= 550)) {
+		} else if (formData.score <= 599 && formData.score >= 550) {
 			return setInterestRate(1.155);
-		} else if ((formData.score <= 639) & (formData.score >= 600)) {
+		} else if (formData.score <= 639 && formData.score >= 600) {
 			return setInterestRate(1.115);
-		} else if ((formData.score <= 679) & (formData.score >= 640)) {
+		} else if (formData.score <= 679 && formData.score >= 640) {
 			return setInterestRate(1.085);
-		} else if ((formData.score <= 729) & (formData.score >= 680)) {
+		} else if (formData.score <= 729 && formData.score >= 680) {
 			return setInterestRate(1.0725);
 		} else if (formData.score >= 730) {
 			return setInterestRate(1.0675);
 		} else {
-			return setInterestRate(1.1);
+			return setInterestRate(1.18);
 		}
 	};
 
@@ -65,14 +76,39 @@ const CalcPage = () => {
 	const handleInputChange = e => {
 		const { name, value } = e.target;
 		setFormData(prevData => ({ ...prevData, [name]: value }));
+		validateFields();
+		// Clear the error for the specific field being typed in
+		setErrors(prevErrors => ({
+			...prevErrors,
+			[name]: '',
+		}));
 	};
 
 	useEffect(() => {
 		getInterestRate();
 	}, [formData]);
 
+	const validateFields = () => {
+		let formErrors = {};
+
+		if (!formData.trade || formData.trade < 100 || formData.trade > 50000) {
+			formErrors.trade = 'Trade value must be between 100 and 50000';
+			// toast.info(formErrors.trade);
+		}
+
+		if (!formData.payoff || formData.payoff < 0) {
+			formErrors.payoff = 'Payoff is required and must be non-negative';
+		}
+
+		// Add further validations...
+
+		setErrors(formErrors);
+		return Object.keys(formErrors).length === 0;
+	};
+
 	return (
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-center gap-5 p-5'>
+			<ToastContainer />
 			{/* Form inputs */}
 			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
 				<h2>Enter the following data here</h2>
@@ -86,11 +122,15 @@ const CalcPage = () => {
 							type='number'
 							name='trade'
 							id='trade'
+							step='100'
 							placeholder='Trade value'
 							value={formData.trade}
 							onChange={handleInputChange}
+							min={100}
+							max={50000}
 						/>
 					</label>
+					{errors.trade && <span className='text-error'>{errors.trade}</span>}
 					<label
 						htmlFor='payoff'
 						className='text-xs text-center flex flex-col'>
@@ -100,11 +140,13 @@ const CalcPage = () => {
 							type='number'
 							name='payoff'
 							id='payoff'
+							step='100'
 							placeholder='Trade payoff'
 							value={formData.payoff}
 							onChange={handleInputChange}
 						/>
 					</label>
+					{errors.payoff && <span className='text-error'>{errors.payoff}</span>}
 					<label
 						htmlFor='price'
 						className='text-xs text-center flex flex-col'>
@@ -154,6 +196,7 @@ const CalcPage = () => {
 							type='number'
 							name='otherAccessory'
 							id='otherAccessory'
+							step='100'
 							placeholder='Additional accessories cost'
 							value={formData.otherAccessory}
 							onChange={handleInputChange}
@@ -168,6 +211,7 @@ const CalcPage = () => {
 							type='number'
 							name='downPayment'
 							id='downPayment'
+							step='100'
 							placeholder='Down payment'
 							value={formData.downPayment}
 							onChange={handleInputChange}
@@ -182,6 +226,7 @@ const CalcPage = () => {
 							type='number'
 							name='score'
 							id='score'
+							max={999}
 							placeholder='Credit score'
 							value={formData.score}
 							onChange={handleInputChange}
