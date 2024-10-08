@@ -1,5 +1,5 @@
 'use client';
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 
 const CalcPage = () => {
 	const initialFormData = {
@@ -8,11 +8,13 @@ const CalcPage = () => {
 		price: '',
 		otherAccessory: '',
 		downPayment: '',
+		score: '',
 	};
 
 	const [formData, setFormData] = useState(initialFormData);
 	const [loJack, setLoJack] = useState(499);
 	const [roadHazard, setRoadHazard] = useState(499);
+	const [interestRate, setInterestRate] = useState(1.18);
 
 	const handleLoJackChange = e => {
 		setLoJack(e.target.checked ? 499 : 0);
@@ -34,7 +36,24 @@ const CalcPage = () => {
 	const totalWithDown = totalWithTax - Number(formData.downPayment);
 	const totalWithTenDown = totalWithTax - Number(totalWithTax * 0.1);
 	const totalWithTwentyDown = totalWithTax - Number(totalWithTax * 0.2);
-	const interestRate = 1.1;
+
+	const getInterestRate = () => {
+		if (formData.score <= 549) {
+			return setInterestRate(1.18);
+		} else if ((formData.score <= 599) & (formData.score >= 550)) {
+			return setInterestRate(1.155);
+		} else if ((formData.score <= 639) & (formData.score >= 600)) {
+			return setInterestRate(1.115);
+		} else if ((formData.score <= 679) & (formData.score >= 640)) {
+			return setInterestRate(1.085);
+		} else if ((formData.score <= 729) & (formData.score >= 680)) {
+			return setInterestRate(1.0725);
+		} else if (formData.score >= 730) {
+			return setInterestRate(1.0675);
+		} else {
+			return setInterestRate(1.1);
+		}
+	};
 
 	const toCurrency = n => {
 		return n.toLocaleString('en-US', {
@@ -47,6 +66,10 @@ const CalcPage = () => {
 		const { name, value } = e.target;
 		setFormData(prevData => ({ ...prevData, [name]: value }));
 	};
+
+	useEffect(() => {
+		getInterestRate();
+	}, [formData]);
 
 	return (
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-center gap-5 p-5'>
@@ -150,6 +173,20 @@ const CalcPage = () => {
 							onChange={handleInputChange}
 						/>
 					</label>
+					<label
+						htmlFor='score'
+						className='text-xs text-center flex flex-col'>
+						<span>Credit score</span>
+						<input
+							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+							type='number'
+							name='score'
+							id='score'
+							placeholder='Credit score'
+							value={formData.score}
+							onChange={handleInputChange}
+						/>
+					</label>
 				</form>
 				{/* Interest rates */}
 				<div className='dropdown dropdown-hover dropdown-top w-full mt-6'>
@@ -163,7 +200,7 @@ const CalcPage = () => {
 					<div
 						tabIndex={0}
 						className='dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow'>
-						<h5 className='text-lg'>Credit-based Rates</h5>
+						<h5 className='text-base text-center'>Credit-based rates</h5>
 						<table className='table table-xs'>
 							{/* head */}
 							<thead>
@@ -245,6 +282,9 @@ const CalcPage = () => {
 						</li>
 						<li>
 							<p>10% down payment: {toCurrency(totalWithTax * 0.1)}</p>
+						</li>
+						<li>
+							<p>Interest rate: {(interestRate * 100 - 100).toFixed(2)}</p>
 						</li>
 					</ul>
 				</div>
