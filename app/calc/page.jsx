@@ -4,17 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toCurrency } from '../helpers/toCurrency';
 import { getInterestRate } from '../helpers/getInterestRate';
+import { initialFormData } from '../formUtils/initialFormData';
+import { fieldLengthLimits } from '../formUtils/fieldLengthLimits';
 
 const CalcPage = () => {
-	const initialFormData = {
-		trade: '',
-		payoff: '',
-		price: '',
-		otherAccessory: '',
-		downPayment: '',
-		score: '',
-	};
-
 	const [errors, setErrors] = useState({});
 	const [formData, setFormData] = useState(initialFormData);
 	const [loJack, setLoJack] = useState(499);
@@ -34,23 +27,24 @@ const CalcPage = () => {
 		Number(formData.price) +
 		Number(loJack) +
 		Number(roadHazard) +
-		Number(formData.otherAccessory) -
+		Number(formData.accessories) -
 		equity;
 
 	const totalWithTax = total * 1.12;
-	const totalWithDown = totalWithTax - Number(formData.downPayment);
+	const totalWithDown = totalWithTax - Number(formData.down);
 	const totalWithTenDown = totalWithTax - Number(totalWithTax * 0.1);
 	const totalWithTwentyDown = totalWithTax - Number(totalWithTax * 0.2);
 
 	const handleInputChange = e => {
 		const { name, value } = e.target;
-		const empty = {};
+		if (fieldLengthLimits[name] && value.length > fieldLengthLimits[name]) {
+			return; // Prevent further input if limit is exceeded
+		}
 		setFormData(prevData => ({ ...prevData, [name]: value }));
 		validateFields();
-		// Clear the error for the specific field being typed in
 		setErrors(prevErrors => {
 			const updatedErrors = { ...prevErrors };
-			delete updatedErrors[name]; // Remove error for the current field
+			delete updatedErrors[name];
 			return updatedErrors;
 		});
 	};
@@ -64,8 +58,8 @@ const CalcPage = () => {
 		// trade: '',
 		// 	payoff: '',
 		// 	price: '',
-		// 	otherAccessory: '',
-		// 	downPayment: '',
+		// 	accessories: '',
+		// 	down: '',
 		// 	score: '',
 
 		if (
@@ -85,8 +79,6 @@ const CalcPage = () => {
 		setErrors(formErrors);
 		return Object.keys(formErrors).length === 0;
 	};
-	console.log(errors);
-	console.log(Object.values(errors), Object.values(errors).length);
 
 	return (
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-center gap-5 p-5'>
@@ -170,32 +162,32 @@ const CalcPage = () => {
 						</div>
 					</div>
 					<label
-						htmlFor='otherAccessory'
+						htmlFor='accessories'
 						className='text-xs text-center flex flex-col'>
 						<span>Other accessories cost</span>
 						<input
 							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
-							name='otherAccessory'
-							id='otherAccessory'
+							name='accessories'
+							id='accessories'
 							step='100'
 							placeholder='Additional accessories cost'
-							value={formData.otherAccessory}
+							value={formData.accessories}
 							onChange={handleInputChange}
 						/>
 					</label>
 					<label
-						htmlFor='downPayment'
+						htmlFor='down'
 						className='text-xs text-center flex flex-col'>
-						<span>Initial cash investment</span>
+						<span>Actual initial cash investment</span>
 						<input
 							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
-							name='downPayment'
-							id='downPayment'
+							name='down'
+							id='down'
 							step='100'
 							placeholder='Down payment'
-							value={formData.downPayment}
+							value={formData.down}
 							onChange={handleInputChange}
 						/>
 					</label>
