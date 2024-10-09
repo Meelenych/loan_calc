@@ -16,10 +16,14 @@ const CalcPage = () => {
 
 	const handleLoJackChange = e => {
 		setLoJack(e.target.checked ? 499 : 0);
+		loJack ? toast.error('LoJack removed') : toast.success('Lojack added');
 	};
 
 	const handleRoadHazardChange = e => {
 		setRoadHazard(e.target.checked ? 499 : 0);
+		roadHazard
+			? toast.error('Road Hazard removed')
+			: toast.success('Road Hazard added');
 	};
 
 	const equity = Number(formData.trade) - Number(formData.payoff);
@@ -42,6 +46,7 @@ const CalcPage = () => {
 		}
 		setFormData(prevData => ({ ...prevData, [name]: value }));
 		validateFields();
+
 		setErrors(prevErrors => {
 			const updatedErrors = { ...prevErrors };
 			delete updatedErrors[name];
@@ -55,26 +60,39 @@ const CalcPage = () => {
 
 	const validateFields = () => {
 		let formErrors = {};
-		// trade: '',
-		// 	payoff: '',
-		// 	price: '',
-		// 	accessories: '',
-		// 	down: '',
-		// 	score: '',
 
 		if (
 			(formData.trade && formData.trade < 100) ||
 			(formData.trade && formData.trade > 50000)
 		) {
-			formErrors.trade = 'Trade value must be between 100 and 50000';
-			// toast.info(formErrors.trade);
+			formErrors.trade = 'Trade value must be between 100 and 50,000';
 		}
 
-		if ((formData.trade && !formData.payoff) || formData.payoff < 0) {
-			formErrors.payoff = 'Payoff is required and must be non-negative';
+		if (formData.trade && !formData.payoff) {
+			formErrors.payoff = 'Payoff is required and must not be negative';
 		}
 
-		// Add further validations...
+		if (
+			(formData.price && formData.price < 1000) ||
+			(formData.price && formData.price > 500000)
+		) {
+			formErrors.price = 'Price is required and must be between 1,000 and 500,000';
+		}
+
+		if (Number(formData.accessories) > Number(formData.price)) {
+			formErrors.accessories = "Accessories cannot exceed the vehicle's price";
+		}
+
+		if (Number(formData.down) > Number(formData.price)) {
+			formErrors.down = "Down payment cannot exceed the vehicle's price";
+		}
+
+		if (
+			(formData.score && formData.score < 250) ||
+			(formData.score && formData.score > 900)
+		) {
+			formErrors.score = 'Credit score value must be between 250 and 900';
+		}
 
 		setErrors(formErrors);
 		return Object.keys(formErrors).length === 0;
@@ -135,6 +153,7 @@ const CalcPage = () => {
 							onChange={handleInputChange}
 						/>
 					</label>
+					{errors.price && <span className='text-error'>{errors.price}</span>}
 					<div className='mt-4 rounded-full border border-solid border-white text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
 						<div className='form-control w-full'>
 							<label className='label cursor-pointer flex justify-between'>
@@ -176,6 +195,9 @@ const CalcPage = () => {
 							onChange={handleInputChange}
 						/>
 					</label>
+					{errors.accessories && (
+						<span className='text-error'>{errors.accessories}</span>
+					)}
 					<label
 						htmlFor='down'
 						className='text-xs text-center flex flex-col'>
@@ -191,6 +213,7 @@ const CalcPage = () => {
 							onChange={handleInputChange}
 						/>
 					</label>
+					{errors.down && <span className='text-error'>{errors.down}</span>}
 					<label
 						htmlFor='score'
 						className='text-xs text-center flex flex-col'>
@@ -206,6 +229,7 @@ const CalcPage = () => {
 							onChange={handleInputChange}
 						/>
 					</label>
+					{errors.score && <span className='text-error'>{errors.score}</span>}
 				</form>
 				{/* Interest rates */}
 				<div className='dropdown dropdown-hover dropdown-top w-full mt-6'>
