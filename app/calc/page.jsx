@@ -91,12 +91,15 @@ const CalcPage = () => {
 	const validateFields = () => {
 		let formErrors = {};
 
-		if (!formData.trade || formData.trade < 100 || formData.trade > 50000) {
+		if (
+			(formData.trade && formData.trade < 100) ||
+			(formData.trade && formData.trade > 50000)
+		) {
 			formErrors.trade = 'Trade value must be between 100 and 50000';
 			// toast.info(formErrors.trade);
 		}
 
-		if (!formData.payoff || formData.payoff < 0) {
+		if ((formData.trade && !formData.payoff) || formData.payoff < 0) {
 			formErrors.payoff = 'Payoff is required and must be non-negative';
 		}
 
@@ -227,6 +230,7 @@ const CalcPage = () => {
 							name='score'
 							id='score'
 							max={999}
+							maxLength={3}
 							placeholder='Credit score'
 							value={formData.score}
 							onChange={handleInputChange}
