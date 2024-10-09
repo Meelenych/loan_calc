@@ -15,15 +15,7 @@ const CalcPage = () => {
 		score: '',
 	};
 
-	const [errors, setErrors] = useState({
-		trade: '',
-		payoff: '',
-		price: '',
-		otherAccessory: '',
-		downPayment: '',
-		score: '',
-	});
-
+	const [errors, setErrors] = useState({});
 	const [formData, setFormData] = useState(initialFormData);
 	const [loJack, setLoJack] = useState(499);
 	const [roadHazard, setRoadHazard] = useState(499);
@@ -52,13 +44,15 @@ const CalcPage = () => {
 
 	const handleInputChange = e => {
 		const { name, value } = e.target;
+		const empty = {};
 		setFormData(prevData => ({ ...prevData, [name]: value }));
 		validateFields();
 		// Clear the error for the specific field being typed in
-		setErrors(prevErrors => ({
-			...prevErrors,
-			[name]: '',
-		}));
+		setErrors(prevErrors => {
+			const updatedErrors = { ...prevErrors };
+			delete updatedErrors[name]; // Remove error for the current field
+			return updatedErrors;
+		});
 	};
 
 	useEffect(() => {
@@ -67,6 +61,12 @@ const CalcPage = () => {
 
 	const validateFields = () => {
 		let formErrors = {};
+		// trade: '',
+		// 	payoff: '',
+		// 	price: '',
+		// 	otherAccessory: '',
+		// 	downPayment: '',
+		// 	score: '',
 
 		if (
 			(formData.trade && formData.trade < 100) ||
@@ -85,6 +85,8 @@ const CalcPage = () => {
 		setErrors(formErrors);
 		return Object.keys(formErrors).length === 0;
 	};
+	console.log(errors);
+	console.log(Object.values(errors), Object.values(errors).length);
 
 	return (
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-center gap-5 p-5'>
@@ -207,7 +209,6 @@ const CalcPage = () => {
 							name='score'
 							id='score'
 							max={999}
-							maxLength={3}
 							placeholder='Credit score'
 							value={formData.score}
 							onChange={handleInputChange}
@@ -282,7 +283,6 @@ const CalcPage = () => {
 					</div>
 				</div>
 			</div>
-
 			{/* Loan information */}
 			<div className='w-full md:w-1/2'>
 				{/* General information */}
