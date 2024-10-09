@@ -44,7 +44,14 @@ const CalcPage = () => {
 		if (fieldLengthLimits[name] && value.length > fieldLengthLimits[name]) {
 			return; // Prevent further input if limit is exceeded
 		}
-		setFormData(prevData => ({ ...prevData, [name]: value }));
+
+		if (name === 'payoff') {
+			// Remove leading zeros, but keep '0' if it's the only input
+			const formattedValue = value.replace(/^0+(?=\d)/, '');
+			setFormData(prevData => ({ ...prevData, [name]: formattedValue }));
+		} else {
+			setFormData(prevData => ({ ...prevData, [name]: value }));
+		}
 		validateFields(name, value);
 	};
 
@@ -66,8 +73,8 @@ const CalcPage = () => {
 
 		// Validate the 'payoff' field
 		if (fieldName === 'payoff') {
-			if (!value) {
-				formErrors.payoff = 'Payoff is required and must be 0 or more';
+			if (value > 99000) {
+				formErrors.payoff = 'Payoff must be less than 99000';
 			} else {
 				delete formErrors.payoff;
 			}
@@ -129,7 +136,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Trade value</span>
 						<input
-							className='w-full rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='trade'
 							id='trade'
@@ -149,13 +156,14 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Trade payoff</span>
 						<input
-							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='payoff'
 							id='payoff'
+							pattern='^0+(?=\d)'
 							step='100'
 							placeholder='Trade payoff'
-							value={formData.payoff}
+							value={formData.trade ? formData.payoff || 0 : formData.payoff}
 							onChange={handleInputChange}
 							min={0}
 							max={100000}
@@ -169,9 +177,10 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Vehicle price</span>
 						<input
-							className='rounded-full border border-solid border-transparent transition-colors bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='rounded-lg border border-solid border-transparent transition-colors bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='price'
+							step='1000'
 							id='price'
 							placeholder='Vehicle price'
 							value={formData.price}
@@ -183,7 +192,7 @@ const CalcPage = () => {
 						/>
 					</label>
 					{errors.price && <span className='text-error'>{errors.price}</span>}
-					<div className='mt-4 rounded-full border border-solid border-white text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
+					<div className='mt-4 rounded-lg border border-solid border-white text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
 						<div className='form-control w-full'>
 							<label className='label cursor-pointer flex justify-between'>
 								<span className='label-text'>LoJack</span>
@@ -196,7 +205,7 @@ const CalcPage = () => {
 							</label>
 						</div>
 					</div>
-					<div className='mt-4 rounded-full border border-solid border-white text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
+					<div className='mt-4 rounded-lg border border-solid border-white text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
 						<div className='form-control w-full'>
 							<label className='label cursor-pointer'>
 								<span className='label-text'>Road Hazard</span>
@@ -214,7 +223,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Other accessories cost</span>
 						<input
-							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='accessories'
 							id='accessories'
@@ -236,7 +245,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Actual initial cash investment</span>
 						<input
-							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='down'
 							id='down'
@@ -256,7 +265,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Credit score</span>
 						<input
-							className='rounded-full border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='score'
 							id='score'
@@ -276,13 +285,13 @@ const CalcPage = () => {
 					<div
 						tabIndex={0}
 						role='button'
-						className='btn rounded-full btn-warning w-full'>
+						className='btn rounded-lg btn-warning w-full'>
 						Interest rates
 					</div>
-
+					{/* Rates table */}
 					<div
 						tabIndex={0}
-						className='dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow'>
+						className='dropdown-content menu bg-base-100 rounded-lg z-[1] w-full p-2 shadow'>
 						<h5 className='text-base text-center'>Credit-based rates</h5>
 						<table className='table table-xs'>
 							{/* head */}
