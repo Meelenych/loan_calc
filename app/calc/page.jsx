@@ -45,56 +45,75 @@ const CalcPage = () => {
 			return; // Prevent further input if limit is exceeded
 		}
 		setFormData(prevData => ({ ...prevData, [name]: value }));
-		validateFields();
-
-		setErrors(prevErrors => {
-			const updatedErrors = { ...prevErrors };
-			delete updatedErrors[name];
-			return updatedErrors;
-		});
+		validateFields(name, value);
 	};
 
 	useEffect(() => {
 		setInterestRate(getInterestRate(formData.score));
 	}, [formData]);
 
-	const validateFields = () => {
-		let formErrors = {};
+	const validateFields = (fieldName, value) => {
+		let formErrors = { ...errors };
 
-		if (
-			(formData.trade && formData.trade < 100) ||
-			(formData.trade && formData.trade > 50000)
-		) {
-			formErrors.trade = 'Trade value must be between 100 and 50,000';
+		// Validate the 'trade' field
+		if (fieldName === 'trade') {
+			if (value < 100 || value > 50000) {
+				formErrors.trade = 'Trade value must be between 100 and 50,000';
+			} else {
+				delete formErrors.trade;
+			}
 		}
 
-		if (formData.trade && !formData.payoff) {
-			formErrors.payoff = 'Payoff is required and must not be negative';
+		// Validate the 'payoff' field
+		if (fieldName === 'payoff') {
+			if (!value || value < 0) {
+				formErrors.payoff = 'Payoff is required and must not be negative';
+			} else {
+				delete formErrors.payoff;
+			}
 		}
 
-		if (
-			(formData.price && formData.price < 1000) ||
-			(formData.price && formData.price > 500000)
-		) {
-			formErrors.price = 'Price is required and must be between 1,000 and 500,000';
+		// Validate the 'price' field
+		if (fieldName === 'price') {
+			if (value < 1000 || value > 500000) {
+				formErrors.price =
+					'Price is required and must be between 1,000 and 500,000';
+			} else {
+				delete formErrors.price;
+			}
 		}
 
-		if (Number(formData.accessories) > Number(formData.price)) {
-			formErrors.accessories = "Accessories cannot exceed the vehicle's price";
+		// Validate the 'accessories' field
+		if (fieldName === 'accessories') {
+			if (Number(value) > Number(formData.price)) {
+				formErrors.accessories = "Accessories cannot exceed the vehicle's price";
+			} else {
+				delete formErrors.accessories;
+			}
 		}
 
-		if (Number(formData.down) > Number(formData.price)) {
-			formErrors.down = "Down payment cannot exceed the vehicle's price";
+		// Validate the 'down' field
+		if (fieldName === 'down') {
+			if (Number(value) > Number(formData.price)) {
+				formErrors.down = "Down payment cannot exceed the vehicle's price";
+			} else {
+				delete formErrors.down;
+			}
 		}
 
-		if (
-			(formData.score && formData.score < 250) ||
-			(formData.score && formData.score > 900)
-		) {
-			formErrors.score = 'Credit score value must be between 250 and 900';
+		// Validate the 'score' field
+		if (fieldName === 'score') {
+			if (value < 250 || value > 900) {
+				formErrors.score = 'Credit score value must be between 250 and 900';
+			} else {
+				delete formErrors.score;
+			}
 		}
 
+		// Update the errors state
 		setErrors(formErrors);
+
+		// Return true if there are no errors
 		return Object.keys(formErrors).length === 0;
 	};
 
