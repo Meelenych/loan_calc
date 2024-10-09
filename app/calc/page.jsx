@@ -120,6 +120,7 @@ const CalcPage = () => {
 							onChange={handleInputChange}
 							min={100}
 							max={50000}
+							inputMode='numeric'
 						/>
 					</label>
 					{errors.trade && <span className='text-error'>{errors.trade}</span>}
@@ -136,6 +137,7 @@ const CalcPage = () => {
 							placeholder='Trade payoff'
 							value={formData.payoff}
 							onChange={handleInputChange}
+							inputMode='numeric'
 						/>
 					</label>
 					{errors.payoff && <span className='text-error'>{errors.payoff}</span>}
@@ -151,6 +153,7 @@ const CalcPage = () => {
 							placeholder='Vehicle price'
 							value={formData.price}
 							onChange={handleInputChange}
+							inputMode='numeric'
 						/>
 					</label>
 					{errors.price && <span className='text-error'>{errors.price}</span>}
@@ -193,6 +196,7 @@ const CalcPage = () => {
 							placeholder='Additional accessories cost'
 							value={formData.accessories}
 							onChange={handleInputChange}
+							inputMode='numeric'
 						/>
 					</label>
 					{errors.accessories && (
@@ -211,6 +215,7 @@ const CalcPage = () => {
 							placeholder='Down payment'
 							value={formData.down}
 							onChange={handleInputChange}
+							inputMode='numeric'
 						/>
 					</label>
 					{errors.down && <span className='text-error'>{errors.down}</span>}
@@ -227,6 +232,7 @@ const CalcPage = () => {
 							placeholder='Credit score'
 							value={formData.score}
 							onChange={handleInputChange}
+							inputMode='numeric'
 						/>
 					</label>
 					{errors.score && <span className='text-error'>{errors.score}</span>}
