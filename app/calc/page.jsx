@@ -66,8 +66,8 @@ const CalcPage = () => {
 
 		// Validate the 'payoff' field
 		if (fieldName === 'payoff') {
-			if (!value || value < 0) {
-				formErrors.payoff = 'Payoff is required and must not be negative';
+			if (!value) {
+				formErrors.payoff = 'Payoff is required and must be 0 or more';
 			} else {
 				delete formErrors.payoff;
 			}
@@ -137,6 +137,7 @@ const CalcPage = () => {
 							placeholder='Trade value'
 							value={formData.trade}
 							onChange={handleInputChange}
+							onKeyDown={e => e.key === '-' && e.preventDefault()}
 							min={100}
 							max={50000}
 							inputMode='numeric'
@@ -156,6 +157,9 @@ const CalcPage = () => {
 							placeholder='Trade payoff'
 							value={formData.payoff}
 							onChange={handleInputChange}
+							min={0}
+							max={100000}
+							onKeyDown={e => e.key === '-' && e.preventDefault()}
 							inputMode='numeric'
 						/>
 					</label>
@@ -172,6 +176,9 @@ const CalcPage = () => {
 							placeholder='Vehicle price'
 							value={formData.price}
 							onChange={handleInputChange}
+							min={1000}
+							max={500000}
+							onKeyDown={e => e.key === '-' && e.preventDefault()}
 							inputMode='numeric'
 						/>
 					</label>
@@ -215,6 +222,9 @@ const CalcPage = () => {
 							placeholder='Additional accessories cost'
 							value={formData.accessories}
 							onChange={handleInputChange}
+							min={0}
+							max={50000}
+							onKeyDown={e => e.key === '-' && e.preventDefault()}
 							inputMode='numeric'
 						/>
 					</label>
@@ -234,6 +244,9 @@ const CalcPage = () => {
 							placeholder='Down payment'
 							value={formData.down}
 							onChange={handleInputChange}
+							min={0}
+							max={500000}
+							onKeyDown={e => e.key === '-' && e.preventDefault()}
 							inputMode='numeric'
 						/>
 					</label>
@@ -247,10 +260,12 @@ const CalcPage = () => {
 							type='number'
 							name='score'
 							id='score'
-							max={999}
 							placeholder='Credit score'
 							value={formData.score}
 							onChange={handleInputChange}
+							min={250}
+							max={900}
+							onKeyDown={e => e.key === '-' && e.preventDefault()}
 							inputMode='numeric'
 						/>
 					</label>
