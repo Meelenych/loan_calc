@@ -2,6 +2,8 @@
 import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { toCurrency } from '../helpers/toCurrency';
+import { getInterestRate } from '../helpers/getInterestRate';
 
 const CalcPage = () => {
 	const initialFormData = {
@@ -48,31 +50,6 @@ const CalcPage = () => {
 	const totalWithTenDown = totalWithTax - Number(totalWithTax * 0.1);
 	const totalWithTwentyDown = totalWithTax - Number(totalWithTax * 0.2);
 
-	const getInterestRate = () => {
-		if (formData.score <= 549) {
-			return setInterestRate(1.18);
-		} else if (formData.score <= 599 && formData.score >= 550) {
-			return setInterestRate(1.155);
-		} else if (formData.score <= 639 && formData.score >= 600) {
-			return setInterestRate(1.115);
-		} else if (formData.score <= 679 && formData.score >= 640) {
-			return setInterestRate(1.085);
-		} else if (formData.score <= 729 && formData.score >= 680) {
-			return setInterestRate(1.0725);
-		} else if (formData.score >= 730) {
-			return setInterestRate(1.0675);
-		} else {
-			return setInterestRate(1.18);
-		}
-	};
-
-	const toCurrency = n => {
-		return n.toLocaleString('en-US', {
-			style: 'currency',
-			currency: 'USD',
-		});
-	};
-
 	const handleInputChange = e => {
 		const { name, value } = e.target;
 		setFormData(prevData => ({ ...prevData, [name]: value }));
@@ -85,7 +62,7 @@ const CalcPage = () => {
 	};
 
 	useEffect(() => {
-		getInterestRate();
+		setInterestRate(getInterestRate(formData.score));
 	}, [formData]);
 
 	const validateFields = () => {
