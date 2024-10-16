@@ -1,11 +1,14 @@
 'use client';
 import { React, useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import Link from 'next/link';
+import Image from 'next/image';
 import 'react-toastify/dist/ReactToastify.css';
 import { toCurrency } from '../helpers/toCurrency';
 import { getInterestRate } from '../helpers/getInterestRate';
 import { initialFormData } from '../formUtils/initialFormData';
 import { fieldLengthLimits } from '../formUtils/fieldLengthLimits';
+import back from '../icons/back.svg';
 
 const CalcPage = () => {
 	const [errors, setErrors] = useState({});
@@ -129,7 +132,24 @@ const CalcPage = () => {
 			<ToastContainer />
 			{/* Form inputs */}
 			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
-				<h2>Enter the following data here</h2>
+				<div className='w-full grid grid-cols-3 gap-4 items-center'>
+					<Link
+						className='btn rounded-lg btn-warning w-full'
+						href='/'
+						rel='noopener noreferrer'>
+						<Image
+							className='dark'
+							src={back}
+							alt='back'
+							width={20}
+							height={20}
+						/>
+						Back
+					</Link>
+					<h2 className='col-span-2 text-lg text-orange-300'>
+						Enter your old and new car info here
+					</h2>
+				</div>
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
 					<label
 						htmlFor='trade'
@@ -284,7 +304,7 @@ const CalcPage = () => {
 			{/* Loan information */}
 			<div className='w-full md:w-1/2'>
 				{/* General information */}
-				<div>
+				<div className='mb-4'>
 					<h2 className='text-xl font-medium'>General information</h2>
 					<ul>
 						<li>

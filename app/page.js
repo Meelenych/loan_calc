@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import banknotes from './icons/banknotes.svg';
 import bulb from './icons/bulb.svg';
+import Link from 'next/link';
 
 export default function Home() {
 	return (
@@ -8,7 +9,7 @@ export default function Home() {
 			<main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
 				<div className='flex items-center'>
 					<Image
-						className='dark:invert'
+						className=''
 						src={banknotes}
 						alt='Next.js logo'
 						width={100}
@@ -19,7 +20,7 @@ export default function Home() {
 				</div>
 
 				<div className='w-full grid grid-cols-1 sm:grid-cols-3 gap-4'>
-					<a
+					<Link
 						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						href='/calc'
 						rel='noopener noreferrer'>
@@ -31,16 +32,16 @@ export default function Home() {
 							height={20}
 						/>
 						Start here
-					</a>
+					</Link>
 
 					{/* Interest rates */}
 					<div className='dropdown dropdown-hover dropdown-top  gap-2 w-full'>
-						<div
+						<button
 							tabIndex={0}
-							role='button'
+							type='button'
 							className='btn rounded-lg btn-warning w-full'>
 							Check interest rates
-						</div>
+						</button>
 						{/* Rates table */}
 						<div
 							tabIndex={0}
@@ -104,7 +105,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					<a
+					<Link
 						href='/tips'
 						className='rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center gap-2 hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						rel='noopener noreferrer'>
@@ -116,7 +117,7 @@ export default function Home() {
 							height={20}
 						/>
 						Read tips
-					</a>
+					</Link>
 				</div>
 			</main>
 			<footer className='row-start-3 flex gap-6 flex-wrap items-center justify-center'></footer>
