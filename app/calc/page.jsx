@@ -336,7 +336,7 @@ const CalcPage = () => {
 				{/* Payments accordeon */}
 				<div className='join join-vertical w-full'>
 					{/* Payments without money down */}
-					<div className='collapse collapse-arrow join-item border-green-900 border'>
+					<div className='collapse collapse-arrow join-item bg-accordeon border-green-900 border sm:border-2'>
 						<input
 							type='radio'
 							name='my-accordion-4'
@@ -374,7 +374,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 					{/* Payments with custom money down */}
-					<div className='collapse collapse-arrow join-item border-green-900 border'>
+					<div className='collapse collapse-arrow join-item bg-accordeon border-green-900 border sm:border-2'>
 						<input
 							type='radio'
 							name='my-accordion-4'
@@ -410,7 +410,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 					{/* Payments with 10% money down */}
-					<div className='collapse collapse-arrow join-item border-green-900 border'>
+					<div className='collapse collapse-arrow join-item bg-accordeon border-green-900 border sm:border-2'>
 						<input
 							type='radio'
 							name='my-accordion-4'
@@ -451,7 +451,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 					{/* Payments with 20% money down */}
-					<div className='collapse collapse-arrow join-item border-green-900 border'>
+					<div className='collapse collapse-arrow join-item bg-accordeon border-green-900 border sm:border-2'>
 						<input
 							type='radio'
 							name='my-accordion-4'
