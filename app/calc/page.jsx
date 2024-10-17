@@ -152,7 +152,7 @@ const CalcPage = () => {
 					<label
 						htmlFor='trade'
 						className='text-xs text-center flex flex-col'>
-						<span>Trade value</span>
+						<span className='mb-1'>Trade value</span>
 						<input
 							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
@@ -172,7 +172,7 @@ const CalcPage = () => {
 					<label
 						htmlFor='payoff'
 						className='text-xs text-center flex flex-col'>
-						<span>Trade payoff</span>
+						<span className='mb-1'>Trade payoff</span>
 						<input
 							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
@@ -193,7 +193,7 @@ const CalcPage = () => {
 					<label
 						htmlFor='price'
 						className='text-xs text-center flex flex-col'>
-						<span>Vehicle price</span>
+						<span className='mb-1'>Vehicle price</span>
 						<input
 							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
@@ -242,7 +242,7 @@ const CalcPage = () => {
 					<label
 						htmlFor='accessories'
 						className='text-xs text-center flex flex-col'>
-						<span>Other accessories cost</span>
+						<span className='mb-1'>Other accessories cost</span>
 						<input
 							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
@@ -264,7 +264,7 @@ const CalcPage = () => {
 					<label
 						htmlFor='down'
 						className='text-xs text-center flex flex-col'>
-						<span>Actual initial cash investment</span>
+						<span className='mb-1'>Actual initial cash investment</span>
 						<input
 							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
@@ -284,7 +284,7 @@ const CalcPage = () => {
 					<label
 						htmlFor='score'
 						className='text-xs text-center flex flex-col'>
-						<span>Credit score</span>
+						<span className='mb-1'>Credit score</span>
 						<input
 							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
