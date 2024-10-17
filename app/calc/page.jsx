@@ -131,25 +131,23 @@ const CalcPage = () => {
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-center gap-5 p-5'>
 			<ToastContainer />
 			{/* Form inputs */}
-			<div className='w-full md:w-1/4 flex flex-col items-center justify-center'>
-				<div className='w-full grid grid-cols-3 gap-4 items-center'>
-					<Link
-						className='btn rounded-lg btn-warning w-full'
-						href='/'
-						rel='noopener noreferrer'>
-						<Image
-							className='dark'
-							src={back}
-							alt='back'
-							width={20}
-							height={20}
-						/>
-						Back
-					</Link>
-					<h2 className='col-span-2 text-lg text-orange-300'>
-						Enter your old and new car info here
-					</h2>
-				</div>
+			<div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
+				<Link
+					className='btn rounded-lg btn-warning w-full mb-4'
+					href='/'
+					rel='noopener noreferrer'>
+					<Image
+						className='dark'
+						src={back}
+						alt='back'
+						width={20}
+						height={20}
+					/>
+					Back
+				</Link>
+				<h2 className='col-span-2 text-2xl'>
+					Enter your old and new car info here
+				</h2>
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
 					<label
 						htmlFor='trade'
@@ -212,29 +210,32 @@ const CalcPage = () => {
 						/>
 					</label>
 					{errors.price && <span className='text-error'>{errors.price}</span>}
-					<div className='mt-4  rounded-lg bg-foreground transition-colors hover:bg-green-700 dark:hover:bg-green-900 h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
-						<div className='form-control w-full flex flex-row justify-between'>
-							<label className='label cursor-pointer flex justify-between'>
-								<span className='label-text mr-4 text-base text-gray-400'>LoJack</span>
-								<input
-									type='checkbox'
-									className='checkbox'
-									defaultChecked={loJack === 499}
-									onChange={handleLoJackChange}
-								/>
-							</label>
+					<div className='text-center'>
+						<span className='text-xs '>Accessories</span>
+						<div className='rounded-lg bg-foreground transition-colors hover:bg-green-700 dark:hover:bg-green-900 h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
+							<div className='form-control w-full flex flex-row justify-between'>
+								<label className='label cursor-pointer flex justify-between'>
+									<span className='label-text mr-4 text-base text-gray-400'>LoJack</span>
+									<input
+										type='checkbox'
+										className='checkbox'
+										defaultChecked={loJack === 499}
+										onChange={handleLoJackChange}
+									/>
+								</label>
 
-							<label className='label cursor-pointer'>
-								<span className='label-text mr-4 text-base text-gray-400'>
-									Road Hazard
-								</span>
-								<input
-									type='checkbox'
-									className='checkbox'
-									defaultChecked={roadHazard === 499}
-									onChange={handleRoadHazardChange}
-								/>
-							</label>
+								<label className='label cursor-pointer'>
+									<span className='label-text mr-4 text-base text-gray-400'>
+										Road Hazard
+									</span>
+									<input
+										type='checkbox'
+										className='checkbox'
+										defaultChecked={roadHazard === 499}
+										onChange={handleRoadHazardChange}
+									/>
+								</label>
+							</div>
 						</div>
 					</div>
 
