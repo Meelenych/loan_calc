@@ -156,7 +156,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Trade value</span>
 						<input
-							className='w-full rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='trade'
 							id='trade'
@@ -176,7 +176,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Trade payoff</span>
 						<input
-							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='payoff'
 							id='payoff'
@@ -197,7 +197,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Vehicle price</span>
 						<input
-							className='rounded-lg border border-solid border-transparent transition-colors bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='price'
 							step='1000'
@@ -212,10 +212,10 @@ const CalcPage = () => {
 						/>
 					</label>
 					{errors.price && <span className='text-error'>{errors.price}</span>}
-					<div className='mt-4 rounded-lg border border-solid border-white text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
-						<div className='form-control w-full'>
+					<div className='mt-4  rounded-lg bg-foreground transition-colors hover:bg-green-700 dark:hover:bg-green-900 h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
+						<div className='form-control w-full flex flex-row justify-between'>
 							<label className='label cursor-pointer flex justify-between'>
-								<span className='label-text'>LoJack</span>
+								<span className='label-text mr-4 text-base text-gray-400'>LoJack</span>
 								<input
 									type='checkbox'
 									className='checkbox'
@@ -223,12 +223,11 @@ const CalcPage = () => {
 									onChange={handleLoJackChange}
 								/>
 							</label>
-						</div>
-					</div>
-					<div className='mt-4 rounded-lg border border-solid border-white text-base h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
-						<div className='form-control w-full'>
+
 							<label className='label cursor-pointer'>
-								<span className='label-text'>Road Hazard</span>
+								<span className='label-text mr-4 text-base text-gray-400'>
+									Road Hazard
+								</span>
 								<input
 									type='checkbox'
 									className='checkbox'
@@ -238,12 +237,13 @@ const CalcPage = () => {
 							</label>
 						</div>
 					</div>
+
 					<label
 						htmlFor='accessories'
 						className='text-xs text-center flex flex-col'>
 						<span>Other accessories cost</span>
 						<input
-							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='accessories'
 							id='accessories'
@@ -265,7 +265,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Actual initial cash investment</span>
 						<input
-							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='down'
 							id='down'
@@ -285,7 +285,7 @@ const CalcPage = () => {
 						className='text-xs text-center flex flex-col'>
 						<span>Credit score</span>
 						<input
-							className='rounded-lg border border-solid border-transparent transition-colors  bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-base h-10 sm:h-12 px-4 sm:px-5'
+							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
 							type='number'
 							name='score'
 							id='score'
@@ -335,7 +335,7 @@ const CalcPage = () => {
 				{/* Payments accordeon */}
 				<div className='join join-vertical w-full'>
 					{/* Payments without money down */}
-					<div className='collapse collapse-arrow join-item border-base-300 border'>
+					<div className='collapse collapse-arrow join-item border-green-900 border'>
 						<input
 							type='radio'
 							name='my-accordion-4'
@@ -373,7 +373,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 					{/* Payments with custom money down */}
-					<div className='collapse collapse-arrow join-item border-base-300 border'>
+					<div className='collapse collapse-arrow join-item border-green-900 border'>
 						<input
 							type='radio'
 							name='my-accordion-4'
@@ -409,7 +409,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 					{/* Payments with 10% money down */}
-					<div className='collapse collapse-arrow join-item border-base-300 border'>
+					<div className='collapse collapse-arrow join-item border-green-900 border'>
 						<input
 							type='radio'
 							name='my-accordion-4'
@@ -450,7 +450,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 					{/* Payments with 20% money down */}
-					<div className='collapse collapse-arrow join-item border-base-300 border'>
+					<div className='collapse collapse-arrow join-item border-green-900 border'>
 						<input
 							type='radio'
 							name='my-accordion-4'

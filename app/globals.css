@@ -4,18 +4,19 @@
 
 :root {
   --background: rgba(24, 126, 185, 0.648);
-  --foreground: #171717;
+  --foreground: #025d1d;
+  --textColor: #fdb808;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: rgba(3, 15, 22, 0.648);
-    --foreground: #dedfc0;
+    --foreground: #727346;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: var(--textColor);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -24,4 +25,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+input {
+  outline: none;
 }

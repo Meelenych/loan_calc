@@ -52,7 +52,7 @@ export default function Home() {
 								<thead>
 									<tr>
 										<th>Grade</th>
-										<th>Score</th>
+										<th>Credit score</th>
 										<th>Up to 60 mths </th>
 										<th>61-72 mths</th>
 									</tr>
