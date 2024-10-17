@@ -30,3 +30,12 @@ body {
 input {
   outline: none;
 }
+
+h4 {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}

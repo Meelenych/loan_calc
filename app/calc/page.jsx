@@ -145,7 +145,7 @@ const CalcPage = () => {
 					/>
 					Back
 				</Link>
-				<h2 className='col-span-2 text-2xl'>
+				<h2 className='col-span-2 text-2xl mb-4 underline'>
 					Enter your old and new car info here
 				</h2>
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
