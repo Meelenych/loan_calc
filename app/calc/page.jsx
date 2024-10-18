@@ -18,6 +18,7 @@ const CalcPage = () => {
 	const [loJack, setLoJack] = useState(499);
 	const [roadHazard, setRoadHazard] = useState(499);
 	const [interestRate, setInterestRate] = useState(1.18);
+	const [animationClass, setAnimationClass] = useState('accordion-hidden');
 
 	const handleTrade = e => {
 		setIsTrade(e.target.checked ? true : false);
@@ -69,6 +70,16 @@ const CalcPage = () => {
 	useEffect(() => {
 		setInterestRate(getInterestRate(formData.score));
 	}, [formData]);
+
+	useEffect(() => {
+		if (isTrade) {
+			setAnimationClass('accordion-active');
+		} else {
+			setTimeout(() => {
+				setAnimationClass('accordion-hidden');
+			}, 500);
+		}
+	}, [isTrade]);
 
 	const validateFields = (fieldName, value) => {
 		let formErrors = { ...errors };
@@ -140,7 +151,7 @@ const CalcPage = () => {
 			<ToastContainer />
 			{/* Form inputs */}
 			<div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
-				<div className='grid grid-cols-3 w-full mb-4'>
+				<div className='grid grid-cols-3 w-full mb-8'>
 					<Link
 						className='btn rounded-lg btn-outline w-full '
 						href='/'
@@ -185,7 +196,7 @@ const CalcPage = () => {
 				</h2>
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
 					{isTrade && (
-						<div>
+						<div className={animationClass}>
 							<label
 								htmlFor='trade'
 								className='text-xs text-center flex flex-col mb-2'>
