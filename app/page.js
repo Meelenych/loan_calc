@@ -1,17 +1,20 @@
+'use client';
 import Image from 'next/image';
 import banknotes from './icons/banknotes.svg';
 import bulb from './icons/bulb.svg';
 import Link from 'next/link';
+import ThemeController from './components/theme';
 
 export default function Home() {
 	return (
 		<div className='grid items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
+			<ThemeController />
 			<main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
 				<div className='flex items-center'>
 					<Image
 						className=''
 						src={banknotes}
-						alt='Next.js logo'
+						alt='banknotes'
 						width={100}
 						height={38}
 						priority
@@ -21,13 +24,13 @@ export default function Home() {
 
 				<div className='w-full grid grid-cols-1 sm:grid-cols-3 gap-4'>
 					<Link
-						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-green-500 text-background gap-2 hover:bg-green-700 dark:hover:bg-green-300 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						href='/calc'
 						rel='noopener noreferrer'>
 						<Image
 							className='dark'
 							src={banknotes}
-							alt='logo'
+							alt='banknotes'
 							width={20}
 							height={20}
 						/>
@@ -107,10 +110,10 @@ export default function Home() {
 
 					<Link
 						href='/tips'
-						className='rounded-lg border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center gap-2 hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg border border-solid border-black/[.08] dark:border-white/[0.5] transition-colors flex items-center justify-center gap-2 hover:bg-[#f2f2f2] dark:hover:bg-orange-600 hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						rel='noopener noreferrer'>
 						<Image
-							className='dark:invert'
+							className=''
 							src={bulb}
 							alt='logo'
 							width={20}

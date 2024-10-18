@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --background: rgba(15, 72, 105, 0.648);
   --foreground: #025d1d;
   --textColor: #fdb808;
@@ -15,7 +15,7 @@
     --foreground: #727346;
     --accordeon: #03220c;
   }
-}
+} */
 
 body {
   color: var(--textColor);

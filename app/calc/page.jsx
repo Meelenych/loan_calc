@@ -146,7 +146,8 @@ const CalcPage = () => {
 					Back
 				</Link>
 				<h2 className='col-span-2 text-lg sm:text-2xl mb-4 underline'>
-					Enter your old and new car info here
+					Enter your <span className='text-orange-600'>old</span> and{' '}
+					<span className='text-green-700'>new</span> car info below
 				</h2>
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
 					<label
@@ -211,7 +212,7 @@ const CalcPage = () => {
 					</label>
 					{errors.price && <span className='text-error'>{errors.price}</span>}
 					<div className='text-center'>
-						<span className='text-xs '>Accessories</span>
+						<p className='text-xs mb-1'>Accessories</p>
 						<div className='rounded-lg bg-foreground transition-colors hover:bg-green-700 dark:hover:bg-green-900 h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
 							<div className='form-control w-full flex flex-row justify-between'>
 								<label className='label cursor-pointer flex justify-between'>
