@@ -36,77 +36,84 @@ export default function Home() {
 						/>
 						Start here
 					</Link>
-
 					{/* Interest rates */}
-					<div className='dropdown dropdown-hover dropdown-top  gap-2 w-full'>
-						<button
-							tabIndex={0}
-							type='button'
-							className='btn rounded-lg btn-warning w-full'>
-							Check interest rates
-						</button>
-						{/* Rates table */}
-						<div
-							tabIndex={0}
-							className='dropdown-content sm:-translate-x-1/4 menu bg-base-300 rounded-lg z-[1] p-2 shadow'>
-							<h5 className='text-base text-center'>Credit-based rates</h5>
-							<table className='table table-xs sm:table'>
-								{/* head */}
-								<thead>
-									<tr>
-										<th>Grade</th>
-										<th>Credit score</th>
-										<th>Up to 60 mths </th>
-										<th>61-72 mths</th>
-									</tr>
-								</thead>
-								<tbody>
-									{/* row 1 */}
-									<tr>
-										<th>A+</th>
-										<td>730+</td>
-										<td>6.49%</td>
-										<td>6.75%</td>
-									</tr>
-									{/* row 2 */}
-									<tr>
-										<th>A</th>
-										<td>680-729</td>
-										<td>6.99%</td>
-										<td>7.25%</td>
-									</tr>
-									{/* row 3 */}
-									<tr>
-										<th>B</th>
-										<td>640-679</td>
-										<td>8.24%</td>
-										<td>8.50%</td>
-									</tr>
-									{/* row 4 */}
-									<tr>
-										<th>C</th>
-										<td>600-639</td>
-										<td>11.24%</td>
-										<td>11.50%</td>
-									</tr>
-									{/* row 5 */}
-									<tr>
-										<th>D</th>
-										<td>550-599</td>
-										<td>15.24%</td>
-										<td>15.50%</td>
-									</tr>
-									{/* row 6 */}
-									<tr>
-										<th>E</th>
-										<td>&lt;549</td>
-										<td>18.00%</td>
-										<td>18.00%</td>
-									</tr>
-								</tbody>
-							</table>
+					<button
+						className='btn rounded-lg btn-warning w-full'
+						onClick={() => document.getElementById('my_modal_3').showModal()}>
+						Check interest rates
+					</button>
+					<dialog
+						id='my_modal_3'
+						className='modal'>
+						<div className='modal-box'>
+							<form method='dialog'>
+								{/* if there is a button in form, it will close the modal */}
+								<button className='btn btn-sm btn-circle  absolute right-2 top-2'>
+									✕
+								</button>
+							</form>
+
+							{/* Rates table */}
+							<div className='bg-base-300 rounded-lg z-[1] p-2 shadow'>
+								<h5 className='text-base text-center'>Credit-based rates</h5>
+								<table className='table table-xs sm:table'>
+									{/* head */}
+									<thead>
+										<tr>
+											<th>Grade</th>
+											<th>Credit score</th>
+											<th>&lt;60 mths </th>
+											<th>61-72 mths</th>
+										</tr>
+									</thead>
+									<tbody>
+										{/* row 1 */}
+										<tr>
+											<th>A+</th>
+											<td>730+</td>
+											<td>6.49%</td>
+											<td>6.75%</td>
+										</tr>
+										{/* row 2 */}
+										<tr>
+											<th>A</th>
+											<td>680-729</td>
+											<td>6.99%</td>
+											<td>7.25%</td>
+										</tr>
+										{/* row 3 */}
+										<tr>
+											<th>B</th>
+											<td>640-679</td>
+											<td>8.24%</td>
+											<td>8.50%</td>
+										</tr>
+										{/* row 4 */}
+										<tr>
+											<th>C</th>
+											<td>600-639</td>
+											<td>11.24%</td>
+											<td>11.50%</td>
+										</tr>
+										{/* row 5 */}
+										<tr>
+											<th>D</th>
+											<td>550-599</td>
+											<td>15.24%</td>
+											<td>15.50%</td>
+										</tr>
+										{/* row 6 */}
+										<tr>
+											<th>E</th>
+											<td>&lt;549</td>
+											<td>18.00%</td>
+											<td>18.00%</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
+					</dialog>
 
 					<Link
 						href='/tips'

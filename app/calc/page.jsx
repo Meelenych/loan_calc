@@ -9,13 +9,20 @@ import { getInterestRate } from '../helpers/getInterestRate';
 import { initialFormData } from '../formUtils/initialFormData';
 import { fieldLengthLimits } from '../formUtils/fieldLengthLimits';
 import back from '../icons/back.svg';
+import ThemeController from '../components/theme';
 
 const CalcPage = () => {
 	const [errors, setErrors] = useState({});
 	const [formData, setFormData] = useState(initialFormData);
+	const [isTrade, setIsTrade] = useState(false);
 	const [loJack, setLoJack] = useState(499);
 	const [roadHazard, setRoadHazard] = useState(499);
 	const [interestRate, setInterestRate] = useState(1.18);
+
+	const handleTrade = e => {
+		setIsTrade(e.target.checked ? true : false);
+		setFormData(prevData => ({ ...prevData, trade: 0, payoff: 0 }));
+	};
 
 	const handleLoJackChange = e => {
 		setLoJack(e.target.checked ? 499 : 0);
@@ -44,11 +51,12 @@ const CalcPage = () => {
 
 	const handleInputChange = e => {
 		const { name, value } = e.target;
+		const relevantFields = ['payoff', 'trade', 'price', 'accessories', 'down'];
 		if (fieldLengthLimits[name] && value.length > fieldLengthLimits[name]) {
 			return; // Prevent further input if limit is exceeded
 		}
 
-		if (name === 'payoff') {
+		if (relevantFields.includes(name)) {
 			// Remove leading zeros, but keep '0' if it's the only input
 			const formattedValue = value.replace(/^0+(?=\d)/, '');
 			setFormData(prevData => ({ ...prevData, [name]: formattedValue }));
@@ -128,68 +136,98 @@ const CalcPage = () => {
 	};
 
 	return (
-		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-center gap-5 p-5'>
+		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
 			<ToastContainer />
 			{/* Form inputs */}
 			<div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
-				<Link
-					className='btn rounded-lg btn-warning w-full mb-4'
-					href='/'
-					rel='noopener noreferrer'>
-					<Image
-						className='dark'
-						src={back}
-						alt='back'
-						width={20}
-						height={20}
-					/>
-					Back
-				</Link>
+				<div className='grid grid-cols-3 w-full mb-4'>
+					<Link
+						className='btn rounded-lg btn-outline w-full '
+						href='/'
+						rel='noopener noreferrer'>
+						<Image
+							className='dark'
+							src={back}
+							alt='back'
+							width={20}
+							height={20}
+						/>
+						Back
+					</Link>
+					<div className='flex justify-end items-center'>
+						<ThemeController />
+					</div>
+					<div className='flex justify-end items-center'>
+						<div className='form-control'>
+							<label className='label cursor-pointer'>
+								<span className='label-text text-base text-gray-400 mr-4'>
+									Trade in
+								</span>
+								<input
+									type='checkbox'
+									className='checkbox'
+									defaultChecked={isTrade === true}
+									onChange={handleTrade}
+								/>
+							</label>
+						</div>
+					</div>
+				</div>
 				<h2 className='col-span-2 text-lg sm:text-2xl mb-4 underline'>
-					Enter your <span className='text-orange-600'>old</span> and{' '}
+					Enter your{' '}
+					{isTrade && (
+						<span>
+							{' '}
+							<span className='text-orange-600'>old</span> and{' '}
+						</span>
+					)}
 					<span className='text-green-700'>new</span> car info below
 				</h2>
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
-					<label
-						htmlFor='trade'
-						className='text-xs text-center flex flex-col'>
-						<span className='mb-1'>Trade value</span>
-						<input
-							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
-							type='number'
-							name='trade'
-							id='trade'
-							step='100'
-							placeholder='Trade value'
-							value={formData.trade}
-							onChange={handleInputChange}
-							onKeyDown={e => e.key === '-' && e.preventDefault()}
-							min={100}
-							max={50000}
-							inputMode='numeric'
-						/>
-					</label>
-					{errors.trade && <span className='text-error'>{errors.trade}</span>}
-					<label
-						htmlFor='payoff'
-						className='text-xs text-center flex flex-col'>
-						<span className='mb-1'>Trade payoff</span>
-						<input
-							className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
-							type='number'
-							name='payoff'
-							id='payoff'
-							pattern='^0+(?=\d)'
-							step='100'
-							placeholder='Trade payoff'
-							value={formData.trade ? formData.payoff || 0 : formData.payoff}
-							onChange={handleInputChange}
-							min={0}
-							max={100000}
-							onKeyDown={e => e.key === '-' && e.preventDefault()}
-							inputMode='numeric'
-						/>
-					</label>
+					{isTrade && (
+						<div>
+							<label
+								htmlFor='trade'
+								className='text-xs text-center flex flex-col mb-2'>
+								<span className='mb-1'>Trade value</span>
+								<input
+									className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
+									type='number'
+									name='trade'
+									id='trade'
+									step='100'
+									placeholder='Trade value'
+									value={formData.trade}
+									onChange={handleInputChange}
+									onKeyDown={e => e.key === '-' && e.preventDefault()}
+									min={100}
+									max={50000}
+									inputMode='numeric'
+								/>
+							</label>
+							{errors.trade && <span className='text-error'>{errors.trade}</span>}
+							<label
+								htmlFor='payoff'
+								className='text-xs text-center flex flex-col'>
+								<span className='mb-1'>Trade payoff</span>
+								<input
+									className='w-full rounded-lg outline-2 outline-offset-2 outline-green-700 transition-colors bg-foreground text-textColor gap-2 focus:outline hover:bg-green-700 dark:hover:bg-green-900 text-base h-10 sm:h-12 px-4 sm:px-5'
+									type='number'
+									name='payoff'
+									id='payoff'
+									step='100'
+									placeholder='Trade payoff'
+									value={formData.trade ? formData.payoff || 0 : formData.payoff}
+									onChange={handleInputChange}
+									min={0}
+									max={100000}
+									onKeyDown={e => e.key === '-' && e.preventDefault()}
+									inputMode='numeric'
+								/>
+							</label>
+						</div>
+					)}
+
 					{errors.payoff && <span className='text-error'>{errors.payoff}</span>}
 					<label
 						htmlFor='price'
@@ -309,11 +347,14 @@ const CalcPage = () => {
 				<div className='mb-4'>
 					<h2 className='text-xl font-medium'>General information</h2>
 					<ul>
-						<li>
-							<p>
-								{equity >= 0 ? 'Positive' : 'Negative'} equity: {toCurrency(equity)}
-							</p>
-						</li>
+						{isTrade && (
+							<li>
+								<p>
+									{equity >= 0 ? 'Positive' : 'Negative'} equity: {toCurrency(equity)}
+								</p>
+							</li>
+						)}
+
 						<li>
 							<p>Total with accessories, trade cost and equity: {toCurrency(total)}</p>
 						</li>
