@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: rgba(15, 72, 105, 0.648);
+  --background: rgba(111, 178, 216, 0.648);
   --foreground: #025d1d;
   --textColor: #fdb808;
   --accordeon: #03220c2d;
@@ -43,19 +43,18 @@ ul {
   padding-left: 20px;
 }
 
-.accordion-active {
-  transition:
-    max-height 0.5s ease-in-out,
-    opacity 0.5s ease-in-out;
+.active {
   opacity: 1;
-  max-height: 200px;
+  max-height: 150px;
+  transition:
+    max-height 1s ease-in-out,
+    opacity 1s ease-in-out;
 }
 
-.accordion-hidden {
-  transition:
-    max-height 0.5s ease-in-out,
-    opacity 0.5s ease-in-out;
+.inactive {
   opacity: 0;
-  max-height: 0;
-  pointer-events: none;
+  max-height: 1px;
+  transition:
+    max-height 1s ease-in-out,
+    opacity 1s ease-in-out;
 }

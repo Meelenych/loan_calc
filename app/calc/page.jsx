@@ -18,7 +18,7 @@ const CalcPage = () => {
 	const [loJack, setLoJack] = useState(499);
 	const [roadHazard, setRoadHazard] = useState(499);
 	const [interestRate, setInterestRate] = useState(1.18);
-	const [animationClass, setAnimationClass] = useState('accordion-hidden');
+	const [animationClass, setAnimationClass] = useState('inactive');
 
 	const handleTrade = e => {
 		setIsTrade(e.target.checked ? true : false);
@@ -73,11 +73,10 @@ const CalcPage = () => {
 
 	useEffect(() => {
 		if (isTrade) {
-			setAnimationClass('accordion-active');
-		} else {
-			setTimeout(() => {
-				setAnimationClass('accordion-hidden');
-			}, 500);
+			setAnimationClass('active');
+		}
+		if (!isTrade) {
+			setAnimationClass('inactive');
 		}
 	}, [isTrade]);
 

@@ -31,9 +31,9 @@ const ThemeController = () => {
 			root.style.setProperty('--textColor', '#fdb808');
 			root.style.setProperty('--accordeon', '#03220c');
 		} else {
-			root.style.setProperty('--background', 'rgba(15, 72, 105, 0.648)');
-			root.style.setProperty('--foreground', '#025d1d');
-			root.style.setProperty('--textColor', '#fdb808');
+			root.style.setProperty('--background', 'rgb(252, 246, 181)');
+			root.style.setProperty('--foreground', '#7e971c');
+			root.style.setProperty('--textColor', '#282826');
 			root.style.setProperty('--accordeon', '#03220c2d');
 		}
 	}, [isDark]);
