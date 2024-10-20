@@ -5,9 +5,9 @@ module.exports = {
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
-	daisyui: {
-		themes: ['light', 'dark'],
-	},
+	// daisyui: {
+	// 	themes: ['light', 'dark'],
+	// },
 	theme: {
 		extend: {
 			colors: {

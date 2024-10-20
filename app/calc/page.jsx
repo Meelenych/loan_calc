@@ -366,7 +366,10 @@ const CalcPage = () => {
 						)}
 
 						<li>
-							<p>Total with accessories, trade cost and equity: {toCurrency(total)}</p>
+							<p>
+								Total with accessories{isTrade && <span>, trade cost and equity</span>}:{' '}
+								{toCurrency(total)}
+							</p>
 						</li>
 						<li>
 							<p>

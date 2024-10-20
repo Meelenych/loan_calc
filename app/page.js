@@ -24,7 +24,7 @@ export default function Home() {
 
 				<div className='w-full grid grid-cols-1 sm:grid-cols-3 gap-4'>
 					<Link
-						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-green-500 text-background gap-2 hover:bg-green-700 dark:hover:bg-green-300 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-green-500 text-black font-semibold gap-2 hover:bg-green-600 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						href='/calc'
 						rel='noopener noreferrer'>
 						<Image
@@ -38,7 +38,7 @@ export default function Home() {
 					</Link>
 					{/* Interest rates */}
 					<button
-						className='btn rounded-lg btn-warning w-full'
+						className='btn rounded-lg btn-warning w-full h-10'
 						onClick={() => document.getElementById('my_modal_3').showModal()}>
 						Check interest rates
 					</button>
@@ -117,7 +117,7 @@ export default function Home() {
 
 					<Link
 						href='/tips'
-						className='rounded-lg border border-solid border-black/[.08] dark:border-white/[0.5] transition-colors flex items-center justify-center gap-2 hover:bg-[#f2f2f2] dark:hover:bg-orange-600 hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg bg-orange-400 text-black font-semibold transition-colors flex items-center justify-center gap-2 hover:bg-orange-600 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						rel='noopener noreferrer'>
 						<Image
 							className=''

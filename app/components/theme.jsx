@@ -32,7 +32,7 @@ const ThemeController = () => {
 			root.style.setProperty('--accordeon', '#03220c');
 		} else {
 			root.style.setProperty('--background', 'rgb(252, 246, 181)');
-			root.style.setProperty('--foreground', '#7e971c');
+			root.style.setProperty('--foreground', '#979f7a');
 			root.style.setProperty('--textColor', '#282826');
 			root.style.setProperty('--accordeon', '#03220c2d');
 		}
