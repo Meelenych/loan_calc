@@ -54,11 +54,13 @@ export default function Home() {
 
 							{/* Rates table */}
 							<div className='bg-background rounded-lg z-[1] p-2 shadow text-yellow-600'>
-								<h5 className='text-base text-center'>Credit-based rates</h5>
+								<h5 className='text-base text-center font-semibold'>
+									Credit-based rates
+								</h5>
 								<table className='table table-xs sm:table '>
 									{/* head */}
 									<thead>
-										<tr>
+										<tr className='text-slate-400'>
 											<th>Grade</th>
 											<th>Credit score</th>
 											<th>&lt;60 mths </th>
