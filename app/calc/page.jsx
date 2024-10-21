@@ -22,7 +22,11 @@ const CalcPage = () => {
 
 	const handleTrade = e => {
 		setIsTrade(e.target.checked ? true : false);
-		setFormData(prevData => ({ ...prevData, trade: 0, payoff: 0 }));
+		setFormData(prevData => ({
+			...prevData,
+			trade: null,
+			payoff: null,
+		}));
 	};
 
 	const handleLoJackChange = e => {
@@ -148,8 +152,9 @@ const CalcPage = () => {
 	return (
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
 			<ToastContainer />
-			{/* Form inputs */}
+			{/* Form */}
 			<div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
+				{/* Back, theme and trade btns */}
 				<div className='grid grid-cols-3 gap-4 w-full mb-8'>
 					<Link
 						className='btn rounded-lg btn-outline hover:bg-slate-600 w-full'
@@ -185,6 +190,7 @@ const CalcPage = () => {
 						</div>
 					</div>
 				</div>
+				{/* Heading */}
 				<h2 className='col-span-2 text-lg sm:text-2xl mb-4 underline'>
 					Enter your{' '}
 					{isTrade && (
@@ -195,9 +201,12 @@ const CalcPage = () => {
 					)}
 					<span className='text-green-700'>new</span> car info below
 				</h2>
+				{/* Form inputs */}
 				<form className='grid grid-cols-1 w-full gap-2 min-w-0.5'>
+					{/* Trade info */}
 					{isTrade && (
 						<div className={animationClass}>
+							{/* Trade cost */}
 							<label
 								htmlFor='trade'
 								className='text-xs text-center flex flex-col mb-2'>
@@ -218,6 +227,7 @@ const CalcPage = () => {
 								/>
 							</label>
 							{errors.trade && <span className='text-error'>{errors.trade}</span>}
+							{/* Payoff */}
 							<label
 								htmlFor='payoff'
 								className='text-xs text-center flex flex-col'>
@@ -239,8 +249,8 @@ const CalcPage = () => {
 							</label>
 						</div>
 					)}
-
 					{errors.payoff && <span className='text-error'>{errors.payoff}</span>}
+					{/* Price */}
 					<label
 						htmlFor='price'
 						className='text-xs text-center flex flex-col'>
@@ -261,10 +271,12 @@ const CalcPage = () => {
 						/>
 					</label>
 					{errors.price && <span className='text-error'>{errors.price}</span>}
+					{/* Accessories */}
 					<div className='text-center'>
 						<p className='text-xs mb-1'>Accessories</p>
 						<div className='rounded-lg bg-foreground transition-colors hover:bg-green-700 dark:hover:bg-green-900 h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
 							<div className='form-control w-full flex flex-row justify-between'>
+								{/* LoJack */}
 								<label className='label cursor-pointer flex justify-between'>
 									<span className='label-text mr-4 text-base text-background'>
 										LoJack
@@ -276,7 +288,7 @@ const CalcPage = () => {
 										onChange={handleLoJackChange}
 									/>
 								</label>
-
+								{/* Road hazard */}
 								<label className='label cursor-pointer'>
 									<span className='label-text mr-4 text-base text-background'>
 										Road Hazard
@@ -291,7 +303,7 @@ const CalcPage = () => {
 							</div>
 						</div>
 					</div>
-
+					{/* Other accessories */}
 					<label
 						htmlFor='accessories'
 						className='text-xs text-center flex flex-col'>
@@ -314,6 +326,7 @@ const CalcPage = () => {
 					{errors.accessories && (
 						<span className='text-error'>{errors.accessories}</span>
 					)}
+					{/* Down payment */}
 					<label
 						htmlFor='down'
 						className='text-xs text-center flex flex-col'>
@@ -334,6 +347,7 @@ const CalcPage = () => {
 						/>
 					</label>
 					{errors.down && <span className='text-error'>{errors.down}</span>}
+					{/* Credit score */}
 					<label
 						htmlFor='score'
 						className='text-xs text-center flex flex-col'>

@@ -8,7 +8,7 @@ const TipsPage = () => {
 		<div>
 			<h1 className='text-xl'>TIPS page</h1>
 			<Link
-				className='btn rounded-lg btn-warning w-full sm:w-40'
+				className='btn rounded-lg btn-outline hover:bg-slate-600 w-full'
 				href='/'
 				rel='noopener noreferrer'>
 				<Image
@@ -18,7 +18,9 @@ const TipsPage = () => {
 					width={20}
 					height={20}
 				/>
-				Back
+				<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
+					Back
+				</span>
 			</Link>
 		</div>
 	);
