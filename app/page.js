@@ -38,25 +38,24 @@ export default function Home() {
 					</Link>
 					{/* Interest rates */}
 					<button
-						className='btn rounded-lg btn-warning w-full h-10'
+						className='rounded-lg bg-yellow-400 text-black font-semibold hover:bg-yellow-500 w-full h-10 sm:h-12 px-4 sm:px-5'
 						onClick={() => document.getElementById('my_modal_3').showModal()}>
 						Check interest rates
 					</button>
 					<dialog
 						id='my_modal_3'
 						className='modal'>
-						<div className='modal-box'>
+						<div className='modal-box bg-amber-300'>
 							<form method='dialog'>
-								{/* if there is a button in form, it will close the modal */}
-								<button className='btn btn-sm btn-circle  absolute right-2 top-2'>
+								<button className='btn btn-sm btn-circle border-none absolute right-2 top-2 text-background bg-amber-500 hover:bg-amber-600'>
 									✕
 								</button>
 							</form>
 
 							{/* Rates table */}
-							<div className='bg-base-300 rounded-lg z-[1] p-2 shadow'>
+							<div className='bg-background rounded-lg z-[1] p-2 shadow text-yellow-600'>
 								<h5 className='text-base text-center'>Credit-based rates</h5>
-								<table className='table table-xs sm:table'>
+								<table className='table table-xs sm:table '>
 									{/* head */}
 									<thead>
 										<tr>
