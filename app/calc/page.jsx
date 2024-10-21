@@ -150,7 +150,7 @@ const CalcPage = () => {
 	};
 
 	return (
-		<div className='h-dvh flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
+		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
 			<ToastContainer />
 			{/* Form */}
 			<div className='w-full md:w-1/2 lg:w-1/3 flex flex-col items-center justify-center'>
@@ -285,7 +285,7 @@ const CalcPage = () => {
 							<div className='form-control w-full flex flex-row justify-between'>
 								{/* LoJack */}
 								<label className='label cursor-pointer flex justify-between'>
-									<span className='label-text mr-4 text-base text-background'>
+									<span className='label-text mr-4 text-base text-background dark:text-background'>
 										LoJack
 									</span>
 									<input
@@ -297,7 +297,7 @@ const CalcPage = () => {
 								</label>
 								{/* Road hazard */}
 								<label className='label cursor-pointer'>
-									<span className='label-text mr-4 text-base text-background'>
+									<span className='label-text mr-4 text-base text-background dark:text-background'>
 										Road Hazard
 									</span>
 									<input
