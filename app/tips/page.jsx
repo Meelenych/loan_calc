@@ -9,7 +9,7 @@ const TipsPage = () => {
 	return (
 		<div className='py-5 px-4 sm:px-10 min-h-screen w-full flex flex-col items-center'>
 			{/* Back, theme and trade btns */}
-			<div className='grid grid-cols-3 gap-4 mb-8 w-full sm:w-2/3'>
+			<div className='grid grid-cols-3 gap-4 mb-8 w-full sm:w-3/4 md:w-2/3 lg:w-3/4 xl:w-2/4'>
 				<Link
 					className='btn rounded-lg btn-outline hover:bg-slate-600 w-full'
 					href='/'

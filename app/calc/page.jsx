@@ -285,9 +285,7 @@ const CalcPage = () => {
 							<div className='form-control w-full flex flex-row justify-between'>
 								{/* LoJack */}
 								<label className='label cursor-pointer flex justify-between'>
-									<span className='label-text mr-4 text-base text-background dark:text-background'>
-										LoJack
-									</span>
+									<span className='label-text mr-4 text-base textBg'>LoJack</span>
 									<input
 										type='checkbox'
 										className='checkbox bg-background [--chkbg:--accent] [--chkfg:--background]'
@@ -297,9 +295,7 @@ const CalcPage = () => {
 								</label>
 								{/* Road hazard */}
 								<label className='label cursor-pointer'>
-									<span className='label-text mr-4 text-base text-background dark:text-background'>
-										Road Hazard
-									</span>
+									<span className='label-text mr-4 text-base textBg'>Road Hazard</span>
 									<input
 										type='checkbox'
 										className='checkbox bg-background [--chkbg:--accent] [--chkfg:--background]'
