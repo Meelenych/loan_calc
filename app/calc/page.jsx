@@ -150,9 +150,9 @@ const CalcPage = () => {
 			<ToastContainer />
 			{/* Form inputs */}
 			<div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
-				<div className='grid grid-cols-3 w-full mb-8'>
+				<div className='grid grid-cols-3 gap-4 w-full mb-8'>
 					<Link
-						className='btn rounded-lg btn-outline w-full '
+						className='btn rounded-lg btn-outline hover:bg-slate-600 w-full'
 						href='/'
 						rel='noopener noreferrer'>
 						<Image
@@ -162,20 +162,22 @@ const CalcPage = () => {
 							width={20}
 							height={20}
 						/>
-						Back
+						<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
+							Back
+						</span>
 					</Link>
-					<div className='flex justify-end items-center'>
+					<div className='flex justify-center items-center'>
 						<ThemeController />
 					</div>
 					<div className='flex justify-end items-center'>
-						<div className='form-control'>
+						<div className='form-control btn rounded-lg btn-outline hover:bg-slate-600 w-full'>
 							<label className='label cursor-pointer'>
-								<span className='label-text text-base text-gray-400 mr-4'>
+								<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
 									Trade in
 								</span>
 								<input
 									type='checkbox'
-									className='checkbox'
+									className='checkbox bg-background [--chkbg:--accent] [--chkfg:--background]'
 									defaultChecked={isTrade === true}
 									onChange={handleTrade}
 								/>
@@ -264,22 +266,24 @@ const CalcPage = () => {
 						<div className='rounded-lg bg-foreground transition-colors hover:bg-green-700 dark:hover:bg-green-900 h-10 sm:h-12 px-4 sm:px-5 flex items-center'>
 							<div className='form-control w-full flex flex-row justify-between'>
 								<label className='label cursor-pointer flex justify-between'>
-									<span className='label-text mr-4 text-base text-gray-400'>LoJack</span>
+									<span className='label-text mr-4 text-base text-background'>
+										LoJack
+									</span>
 									<input
 										type='checkbox'
-										className='checkbox'
+										className='checkbox bg-background [--chkbg:--accent] [--chkfg:--background]'
 										defaultChecked={loJack === 499}
 										onChange={handleLoJackChange}
 									/>
 								</label>
 
 								<label className='label cursor-pointer'>
-									<span className='label-text mr-4 text-base text-gray-400'>
+									<span className='label-text mr-4 text-base text-background'>
 										Road Hazard
 									</span>
 									<input
 										type='checkbox'
-										className='checkbox'
+										className='checkbox bg-background [--chkbg:--accent] [--chkfg:--background]'
 										defaultChecked={roadHazard === 499}
 										onChange={handleRoadHazardChange}
 									/>
