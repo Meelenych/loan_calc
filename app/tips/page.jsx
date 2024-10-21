@@ -1,9 +1,11 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import back from '../icons/back.svg';
 import banknotes_grey from '../icons/banknotes_grey.svg';
 import ThemeController from '../components/theme';
+import GoUp from '../components/goUp';
 
 const TipsPage = () => {
 	return (
@@ -174,6 +176,7 @@ const TipsPage = () => {
 					deals confidently.
 				</p>
 			</footer>
+			<GoUp />
 		</div>
 	);
 };
