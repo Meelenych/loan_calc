@@ -2,12 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import back from '../icons/back.svg';
-import banknotes from '../icons/banknotes.svg';
+import banknotes_grey from '../icons/banknotes_grey.svg';
 import ThemeController from '../components/theme';
 
 const TipsPage = () => {
 	return (
-		<div className='py-5 px-4 sm:px-10 h-lvh w-full flex flex-col items-center'>
+		<div className='py-5 px-4 sm:px-10 h-dvh w-full flex flex-col items-center'>
 			{/* Back, theme and trade btns */}
 			<div className='grid grid-cols-3 gap-4 mb-8 w-full sm:w-1/3'>
 				<Link
@@ -15,7 +15,7 @@ const TipsPage = () => {
 					href='/'
 					rel='noopener noreferrer'>
 					<Image
-						className='dark'
+						className=''
 						src={back}
 						alt='back'
 						width={20}
@@ -34,8 +34,8 @@ const TipsPage = () => {
 						href='/calc'
 						rel='noopener noreferrer'>
 						<Image
-							className='dark'
-							src={banknotes}
+							className=''
+							src={banknotes_grey}
 							alt='banknotes'
 							width={20}
 							height={20}

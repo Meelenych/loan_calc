@@ -151,7 +151,7 @@ const CalcPage = () => {
 	};
 
 	return (
-		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
+		<div className='h-dvh flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
 			<ToastContainer />
 			{/* Form */}
 			<div className='w-full md:w-1/2 lg:w-1/3 flex flex-col items-center justify-center'>

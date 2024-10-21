@@ -1,13 +1,14 @@
 'use client';
 import Image from 'next/image';
 import banknotes from './icons/banknotes.svg';
+import banknotes_black from './icons/banknotes_black.svg';
 import bulb from './icons/bulb.svg';
 import Link from 'next/link';
 import ThemeController from './components/theme';
 
 export default function Home() {
 	return (
-		<div className='grid items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
+		<div className='grid items-center justify-items-center h-dvh p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
 			<ThemeController />
 			<main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
 				<div className='flex items-center'>
@@ -24,12 +25,12 @@ export default function Home() {
 
 				<div className='w-full grid grid-cols-1 sm:grid-cols-3 gap-4'>
 					<Link
-						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-green-500 text-black font-semibold gap-2 hover:bg-green-600 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center bg-[#025d1d] text-black font-semibold gap-2 hover:bg-green-700 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						href='/calc'
 						rel='noopener noreferrer'>
 						<Image
-							className='dark'
-							src={banknotes}
+							className=''
+							src={banknotes_black}
 							alt='banknotes'
 							width={20}
 							height={20}
@@ -38,22 +39,22 @@ export default function Home() {
 					</Link>
 					{/* Interest rates */}
 					<button
-						className='rounded-lg bg-yellow-400 text-black font-semibold hover:bg-yellow-500 w-full h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg bg-yellow-500 text-black font-semibold hover:bg-yellow-400 w-full h-10 sm:h-12 px-4 sm:px-5'
 						onClick={() => document.getElementById('my_modal_3').showModal()}>
 						Check interest rates
 					</button>
 					<dialog
 						id='my_modal_3'
 						className='modal'>
-						<div className='modal-box bg-amber-300'>
+						<div className='modal-box bg-yellow-500 p-2'>
 							<form method='dialog'>
-								<button className='btn btn-sm btn-circle border-none absolute right-2 top-2 text-background bg-amber-500 hover:bg-amber-600'>
+								<button className='btn btn-sm btn-circle border-none absolute right-4 top-4 text-background bg-yellow-500 hover:bg-yellow-400'>
 									✕
 								</button>
 							</form>
 
 							{/* Rates table */}
-							<div className='bg-background rounded-lg z-[1] p-2 shadow text-yellow-600'>
+							<div className='bg-background rounded-lg z-[1] p-2 shadow text-yellow-500'>
 								<h5 className='text-base text-center font-semibold'>
 									Credit-based rates
 								</h5>
@@ -118,7 +119,7 @@ export default function Home() {
 
 					<Link
 						href='/tips'
-						className='rounded-lg bg-orange-400 text-black font-semibold transition-colors flex items-center justify-center gap-2 hover:bg-orange-600 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
+						className='rounded-lg bg-orange-500 text-black font-semibold transition-colors flex items-center justify-center gap-2 hover:bg-orange-400 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5'
 						rel='noopener noreferrer'>
 						<Image
 							className=''
