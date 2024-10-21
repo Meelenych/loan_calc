@@ -42,6 +42,22 @@ const CalcPage = () => {
 			: toast.success('Road Hazard added');
 	};
 
+	const handleInputChange = e => {
+		const { name, value } = e.target;
+		const relevantFields = ['payoff', 'trade', 'price', 'accessories', 'down'];
+		if (fieldLengthLimits[name] && value.length > fieldLengthLimits[name]) {
+			return; // Prevent further input if limit is exceeded
+		}
+		if (relevantFields.includes(name)) {
+			// Remove leading zeros, but keep '0' if it's the only input
+			const formattedValue = value.replace(/^0+(?=\d)/, '');
+			setFormData(prevData => ({ ...prevData, [name]: formattedValue }));
+		} else {
+			setFormData(prevData => ({ ...prevData, [name]: value }));
+		}
+		validateFields(name, value);
+	};
+
 	const equity = Number(formData.trade) - Number(formData.payoff);
 	const total =
 		Number(formData.price) +
@@ -54,23 +70,6 @@ const CalcPage = () => {
 	const totalWithDown = totalWithTax - Number(formData.down);
 	const totalWithTenDown = totalWithTax - Number(totalWithTax * 0.1);
 	const totalWithTwentyDown = totalWithTax - Number(totalWithTax * 0.2);
-
-	const handleInputChange = e => {
-		const { name, value } = e.target;
-		const relevantFields = ['payoff', 'trade', 'price', 'accessories', 'down'];
-		if (fieldLengthLimits[name] && value.length > fieldLengthLimits[name]) {
-			return; // Prevent further input if limit is exceeded
-		}
-
-		if (relevantFields.includes(name)) {
-			// Remove leading zeros, but keep '0' if it's the only input
-			const formattedValue = value.replace(/^0+(?=\d)/, '');
-			setFormData(prevData => ({ ...prevData, [name]: formattedValue }));
-		} else {
-			setFormData(prevData => ({ ...prevData, [name]: value }));
-		}
-		validateFields(name, value);
-	};
 
 	useEffect(() => {
 		setInterestRate(getInterestRate(formData.score));
