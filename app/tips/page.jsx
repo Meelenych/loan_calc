@@ -7,9 +7,9 @@ import ThemeController from '../components/theme';
 
 const TipsPage = () => {
 	return (
-		<div className='py-5 px-10 h-lvh w-full flex flex-col items-center'>
+		<div className='py-5 px-4 sm:px-10 h-lvh w-full flex flex-col items-center'>
 			{/* Back, theme and trade btns */}
-			<div className='grid grid-cols-3 gap-4 mb-8 w-1/3'>
+			<div className='grid grid-cols-3 gap-4 mb-8 w-full sm:w-1/3'>
 				<Link
 					className='btn rounded-lg btn-outline hover:bg-slate-600 w-full'
 					href='/'
@@ -21,7 +21,7 @@ const TipsPage = () => {
 						width={20}
 						height={20}
 					/>
-					<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
+					<span className='hidden md:block label-text text-base font-medium text-[#9CA3AF] mr-4'>
 						Back
 					</span>
 				</Link>
@@ -40,7 +40,7 @@ const TipsPage = () => {
 							width={20}
 							height={20}
 						/>
-						<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
+						<span className='hidden md:block label-text text-base font-medium text-[#9CA3AF] mr-4'>
 							Calculator
 						</span>
 					</Link>

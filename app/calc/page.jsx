@@ -9,6 +9,7 @@ import { getInterestRate } from '../helpers/getInterestRate';
 import { initialFormData } from '../formUtils/initialFormData';
 import { fieldLengthLimits } from '../formUtils/fieldLengthLimits';
 import back from '../icons/back.svg';
+import car from '../icons/car.svg';
 import ThemeController from '../components/theme';
 
 const CalcPage = () => {
@@ -153,7 +154,7 @@ const CalcPage = () => {
 		<div className='min-h-screen flex flex-col sm:flex-row justify-evenly items-start gap-5 p-5'>
 			<ToastContainer />
 			{/* Form */}
-			<div className='w-full md:w-1/3 flex flex-col items-center justify-center'>
+			<div className='w-full md:w-1/2 lg:w-1/3 flex flex-col items-center justify-center'>
 				{/* Back, theme and trade btns */}
 				<div className='grid grid-cols-3 gap-4 w-full mb-8'>
 					<Link
@@ -167,7 +168,7 @@ const CalcPage = () => {
 							width={20}
 							height={20}
 						/>
-						<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
+						<span className='hidden md:block label-text text-base font-medium text-[#9CA3AF]'>
 							Back
 						</span>
 					</Link>
@@ -175,9 +176,16 @@ const CalcPage = () => {
 						<ThemeController />
 					</div>
 					<div className='flex justify-end items-center'>
-						<div className='form-control btn rounded-lg btn-outline hover:bg-slate-600 w-full'>
+						<div className='form-control btn rounded-lg btn-outline hover:bg-slate-600 w-full sm:px-0'>
 							<label className='label cursor-pointer'>
-								<span className='label-text text-base font-medium text-[#9CA3AF] mr-4'>
+								<Image
+									className='mr-4 sm:mr-2 '
+									src={car}
+									alt='car'
+									width={20}
+									height={20}
+								/>
+								<span className='hidden xl:block label-text text-base font-medium text-[#9CA3AF] mr-2'>
 									Trade in
 								</span>
 								<input
